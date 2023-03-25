@@ -3,6 +3,7 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { useState } from "react";
 import "./traffic.scss";
 import calculateTime from "./calculateTime";
+import TrafficCarbon from "./trafficCarbon";
 
 const InputForm = styled.input`
   width: 40vw;
@@ -99,6 +100,9 @@ function Traffic() {
           clickableIcons={false}
         ></GoogleMap>
       </LoadScript>
+      {time && (
+        <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
+      )}
     </div>
   );
 }
