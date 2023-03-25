@@ -1,7 +1,4 @@
 const calculateTime = (routes) => {
-  const tempArray = routes.map((e) => e.duration);
-  console.log(tempArray);
-
   const bus = routes.filter((e) => e.instructions.at(0) === "버");
   const subway = routes.filter((e) => e.instructions.at(0) === "지");
 
