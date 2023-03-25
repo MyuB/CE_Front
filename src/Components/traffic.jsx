@@ -100,7 +100,9 @@ function Traffic() {
           clickableIcons={false}
         ></GoogleMap>
       </LoadScript>
-      {time && <TrafficCarbon props={time} />}
+      {time && (
+        <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
+      )}
     </div>
   );
 }
