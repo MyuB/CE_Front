@@ -6,17 +6,13 @@ function TrafficCarbon({ busTime, subwayTime }) {
 
   const subwayCarbon = (time) => {
     const t = parseInt(time);
-    return ((t * 0.424 * 34) / 60) * 0.000182;
+    return ((t * 0.424 * 34) / 60) * 0.000182 * 100;
   };
   const totalCarbonFootprint = () => {
     return busCarbon(busTime) + subwayCarbon(subwayTime);
   };
 
-  return (
-    <div>
-      교통에서 소비된 탄소발자국은 {totalCarbonFootprint()}㎏-CO2 입니다.
-    </div>
-  );
+  return <div>{totalCarbonFootprint()}</div>;
 }
 
 export default TrafficCarbon;
