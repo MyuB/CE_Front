@@ -11,13 +11,16 @@ const InputForm = styled.input`
 `;
 
 const ConfirmBtn = styled.div`
-  width: 15vh;
-  height: 4vh;
-  border: 1px solid black;
+  width: 20vh;
+  height: 8vh;
   text-align: center;
-  line-height: 4vh;
+  line-height: 8vh;
+  font-size: 3vh;
   border-radius: 10px;
-  margin-top: 5vh;
+  margin-top: 15vh;
+  background-color: #009688;
+  color: white;
+  margin-bottom: 5vh;
 `;
 
 const CarbonBox = styled.div`
@@ -29,6 +32,7 @@ const CarbonBox = styled.div`
   color: white;
   font-size: 10vw;
   text-align: center;
+  border-radius: 10%;
 `;
 
 const CarbonText = styled.div`
@@ -74,7 +78,7 @@ function Traffic() {
   };
 
   return (
-    <div>
+    <div className={"traffic-wrapper"}>
       <div className={"input-wrapper"}>
         <div className={"text-wrapper"}>
           <span>출발지</span>
