@@ -75,7 +75,6 @@ function Traffic() {
             required
           />
         </div>
-        <ConfirmBtn onClick={setValues}>다음</ConfirmBtn>
       </div>
       <LoadScript
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
@@ -83,6 +82,9 @@ function Traffic() {
       {time && (
         <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
       )}
+      <div className="button-wrapper">
+        <ConfirmBtn onClick={setValues}>다음</ConfirmBtn>
+      </div>
     </div>
   );
 }
