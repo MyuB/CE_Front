@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { LoadScript } from "@react-google-maps/api";
 import { useState } from "react";
 import "./traffic.scss";
 import calculateTime from "./calculateTime";
@@ -11,12 +11,35 @@ const InputForm = styled.input`
 `;
 
 const ConfirmBtn = styled.div`
-  width: 15vh;
-  height: 4vh;
-  border: 1px solid black;
+  width: 20vh;
+  height: 8vh;
   text-align: center;
-  line-height: 4vh;
+  line-height: 8vh;
+  font-size: 3vh;
   border-radius: 10px;
+  margin-top: 15vh;
+  background-color: #009688;
+  color: white;
+  margin-bottom: 5vh;
+`;
+
+const CarbonBox = styled.div`
+  padding: 1vh;
+  height: 35vh;
+  width: 35vh;
+  background-color: rgb(0, 150, 136);
+  margin: 0 auto;
+  color: white;
+  font-size: 10vw;
+  text-align: center;
+  border-radius: 10%;
+`;
+
+const CarbonText = styled.div`
+  text-align: center;
+  font-size: 8vw;
+  margin-top: 3vh;
+  margin-bottom: 7.5vh;
 `;
 
 function Traffic() {
@@ -51,58 +74,47 @@ function Traffic() {
     const endInput = document.querySelector("#end");
     setStartState(startInput.value);
     setEndState(endInput.value);
-    // geocode(startInput.value, "start");
-    // geocode(endInput.value, "end");
     calculateRoutes();
   };
 
-  const geocode = (address, type) => {
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ address }, (result, status) => {
-      if (status === "OK") {
-        if (type === "start") {
-          setStartState({
-            lat: result[0].geometry.location.lat(),
-            lng: result[0].geometry.location.lng(),
-          });
-        }
-        if (type === "end") {
-          setEndState({
-            lat: result[0].geometry.location.lat(),
-            lng: result[0].geometry.location.lng(),
-          });
-        }
-      } else {
-        console.log("Geocoding Failed");
-      }
-    });
-  };
-
   return (
-    <div>
+    <div className={"traffic-wrapper"}>
       <div className={"input-wrapper"}>
         <div className={"text-wrapper"}>
           <span>출발지</span>
-          <InputForm id="start" placeholder="출발지" type={"text"} required />
+          <InputForm
+            id="start"
+            placeholder="출발지를 입력해주세요"
+            type={"text"}
+            required
+          />
         </div>
         <div className={"text-wrapper"}>
           <span>도착지</span>
-          <InputForm id="end" placeholder="도착지" type={"text"} required />
+          <InputForm
+            id="end"
+            placeholder="도착지를 입력해주세요"
+            type={"text"}
+            required
+          />
         </div>
-        <ConfirmBtn onClick={setValues}>알아보기</ConfirmBtn>
       </div>
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
-        <GoogleMap
-          center={{ lat: 37.774929, lng: -122.419416 }}
-          zoom={14}
-          mapContainerStyle={{ height: "25vh", width: "25vh" }}
-          options={{ streetViewControl: false, mapTypeControl: false }}
-          clickableIcons={false}
-        ></GoogleMap>
-      </LoadScript>
-      {time && (
-        <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
-      )}
+      <LoadScript
+        googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
+      ></LoadScript>
+      <CarbonBox>
+        <CarbonText>{"이동하는데 소비된 탄소 소비량"}</CarbonText>
+        {time ? (
+          <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
+        ) : (
+          0
+        )}{" "}
+        C / kwh
+      </CarbonBox>
+
+      <div className="button-wrapper">
+        <ConfirmBtn onClick={setValues}>다음</ConfirmBtn>
+      </div>
     </div>
   );
 }
