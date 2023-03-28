@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { LoadScript } from "@react-google-maps/api";
 import { useState } from "react";
 import "./traffic.scss";
 import calculateTime from "./calculateTime";
@@ -91,15 +91,9 @@ function Traffic() {
         </div>
         <ConfirmBtn onClick={setValues}>알아보기</ConfirmBtn>
       </div>
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
-        <GoogleMap
-          center={{ lat: 37.774929, lng: -122.419416 }}
-          zoom={14}
-          mapContainerStyle={{ height: "25vh", width: "25vh" }}
-          options={{ streetViewControl: false, mapTypeControl: false }}
-          clickableIcons={false}
-        ></GoogleMap>
-      </LoadScript>
+      <LoadScript
+        googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
+      ></LoadScript>
       {time && (
         <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
       )}
