@@ -51,31 +51,7 @@ function Traffic() {
     const endInput = document.querySelector("#end");
     setStartState(startInput.value);
     setEndState(endInput.value);
-    // geocode(startInput.value, "start");
-    // geocode(endInput.value, "end");
     calculateRoutes();
-  };
-
-  const geocode = (address, type) => {
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ address }, (result, status) => {
-      if (status === "OK") {
-        if (type === "start") {
-          setStartState({
-            lat: result[0].geometry.location.lat(),
-            lng: result[0].geometry.location.lng(),
-          });
-        }
-        if (type === "end") {
-          setEndState({
-            lat: result[0].geometry.location.lat(),
-            lng: result[0].geometry.location.lng(),
-          });
-        }
-      } else {
-        console.log("Geocoding Failed");
-      }
-    });
   };
 
   return (
