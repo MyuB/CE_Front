@@ -59,13 +59,23 @@ function Traffic() {
       <div className={"input-wrapper"}>
         <div className={"text-wrapper"}>
           <span>출발지</span>
-          <InputForm id="start" placeholder="출발지" type={"text"} required />
+          <InputForm
+            id="start"
+            placeholder="출발지를 입력해주세요"
+            type={"text"}
+            required
+          />
         </div>
         <div className={"text-wrapper"}>
           <span>도착지</span>
-          <InputForm id="end" placeholder="도착지" type={"text"} required />
+          <InputForm
+            id="end"
+            placeholder="도착지를 입력해주세요"
+            type={"text"}
+            required
+          />
         </div>
-        <ConfirmBtn onClick={setValues}>알아보기</ConfirmBtn>
+        <ConfirmBtn onClick={setValues}>다음</ConfirmBtn>
       </div>
       <LoadScript
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
