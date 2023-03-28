@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { LoadScript } from "@react-google-maps/api";
 import { useState } from "react";
 import "./traffic.scss";
-import calculateTime from "./calculateTime";
+import calculateTime from "../calculateTime";
 import TrafficCarbon from "./trafficCarbon";
 
 const InputForm = styled.input`
