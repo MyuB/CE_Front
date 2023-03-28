@@ -1,20 +1,24 @@
-.input-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.text-wrapper {
-  margin-bottom: 2vh;
-}
-
-.text-wrapper > span {
-  margin-right: 2vw;
-}
-
-.button-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.traffic-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #92b8b1;
+  margin-top: 15vh;
+  .input-wrapper {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .text-wrapper {
+      margin-bottom: 2vh;
+      span {
+        margin-right: 2vw;
+      }
+    }
+  }
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
