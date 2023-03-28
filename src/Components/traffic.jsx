@@ -17,6 +17,25 @@ const ConfirmBtn = styled.div`
   text-align: center;
   line-height: 4vh;
   border-radius: 10px;
+  margin-top: 5vh;
+`;
+
+const CarbonBox = styled.div`
+  padding: 1vh;
+  height: 35vh;
+  width: 35vh;
+  background-color: rgb(0, 150, 136);
+  margin: 0 auto;
+  color: white;
+  font-size: 10vw;
+  text-align: center;
+`;
+
+const CarbonText = styled.div`
+  text-align: center;
+  font-size: 8vw;
+  margin-top: 3vh;
+  margin-bottom: 7.5vh;
 `;
 
 function Traffic() {
@@ -79,9 +98,16 @@ function Traffic() {
       <LoadScript
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
       ></LoadScript>
-      {time && (
-        <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
-      )}
+      <CarbonBox>
+        <CarbonText>{"이동하는데 소비된 탄소 소비량"}</CarbonText>
+        {time ? (
+          <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
+        ) : (
+          0
+        )}{" "}
+        C / kwh
+      </CarbonBox>
+
       <div className="button-wrapper">
         <ConfirmBtn onClick={setValues}>다음</ConfirmBtn>
       </div>
