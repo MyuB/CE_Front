@@ -9,8 +9,7 @@ const Redeem = styled.div`
 `;
 
 const EnterCode = styled.input`
-  color: black;
-  background-color: #d9d9d9;
+  background-color: #d0d0d0;
   height: 5vh;
   width: 77%;
   margin-left: auto;
@@ -18,7 +17,7 @@ const EnterCode = styled.input`
   display: block;
   line-height: 5vh;
   font-size: 3vh;
-  border: 0.1rem solid black;
+  border: none;
   border-radius: 0.8rem;
 `;
 
