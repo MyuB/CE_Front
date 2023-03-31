@@ -8,7 +8,7 @@ const Redeem = styled.div`
   padding-left: 12%;
 `;
 
-const Temp = styled.input`
+const EnterCode = styled.input`
   color: black;
   background-color: #d9d9d9;
   height: 5vh;
@@ -26,7 +26,10 @@ function GroupJoin() {
   return (
     <div>
       <Redeem>초대코드</Redeem>
-      <Temp placeholder="초대코드를 입력해주세요" className={"placeholder"} />
+      <EnterCode
+        placeholder="초대코드를 입력해주세요"
+        className={"placeholder"}
+      />
     </div>
   );
 }
