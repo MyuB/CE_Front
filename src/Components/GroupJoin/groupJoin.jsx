@@ -21,6 +21,19 @@ const EnterCode = styled.input`
   border-radius: 0.8rem;
 `;
 
+const ConfirmBtn = styled.div`
+  width: 20vh;
+  height: 8vh;
+  text-align: center;
+  line-height: 8vh;
+  font-size: 3vh;
+  border-radius: 10px;
+  margin: 15vh auto 0 auto;
+  background-color: #009688;
+  color: white;
+  margin-bottom: 5vh;
+`;
+
 function GroupJoin() {
   return (
     <div>
@@ -29,6 +42,7 @@ function GroupJoin() {
         placeholder="초대코드를 입력해주세요"
         className={"placeholder"}
       />
+      <ConfirmBtn>확인</ConfirmBtn>
     </div>
   );
 }
