@@ -22,6 +22,7 @@ const InputBox = styled.input`
   font-size: 3vh;
   border: none;
   border-radius: 0.8rem;
+  color: black;
 `;
 
 const ConfirmBtn = styled.div`
@@ -74,7 +75,7 @@ function GroupCreate() {
     <React.Fragment>
       <div>
         <OuterText>그룹명</OuterText>
-        <InputBox type="text" />
+        <InputBox type="text" placeholder="그룹명을 입력해주세요" />
       </div>
       <div>
         <OuterText>시작기간</OuterText>
