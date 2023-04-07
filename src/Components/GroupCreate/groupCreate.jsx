@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React from "react";
+import "./groupCreate.scss";
 
 const OuterText = styled.div`
   color: black;
@@ -35,6 +36,10 @@ const ConfirmBtn = styled.div`
   margin-bottom: 5vh;
 `;
 
+const CheckBox = styled.input`
+  width: 5vh;
+`;
+
 function GroupCreate() {
   const onClick = () => {
     //request some random inviation code from backend
@@ -53,6 +58,16 @@ function GroupCreate() {
       <div>
         <OuterText>종료기간</OuterText>
         <InputBox type="date" />
+      </div>
+      <div className={"checkbox-wrapper"}>
+        <div>
+          <CheckBox type="checkbox" />
+          <span>음식</span>
+        </div>
+        <div>
+          <CheckBox type="checkbox" />
+          <span>교통</span>
+        </div>
       </div>
       <ConfirmBtn onClick={onClick}>초대코드 생성</ConfirmBtn>
     </React.Fragment>
