@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import React from "react";
+import "./groupCreate.scss";
+import { useState } from "react";
 
 const OuterText = styled.div`
   color: black;
@@ -20,6 +22,7 @@ const InputBox = styled.input`
   font-size: 3vh;
   border: none;
   border-radius: 0.8rem;
+  color: black;
 `;
 
 const ConfirmBtn = styled.div`
@@ -35,26 +38,76 @@ const ConfirmBtn = styled.div`
   margin-bottom: 5vh;
 `;
 
+const CheckBox = styled.input`
+  width: 5vh;
+`;
+
 function GroupCreate() {
-  const onClick = () => {
-    //request some random inviation code from backend
+  const [inputs, setInputs] = useState({
+    startDate: "",
+    endDate: "",
+  });
+
+  const { startDate, endDate } = inputs;
+
+  const onChange = ({ target }) => {
+    const { name, value } = target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
   };
 
+  const onReset = () => {
+    if (!dateVerification()) {
+      alert("please check your dates");
+    }
+    setInputs({
+      startDate: "",
+      endDate: "",
+    });
+  };
+
+  const dateVerification = () => {
+    return startDate < endDate ? true : false;
+  };
   return (
     <React.Fragment>
       <div>
         <OuterText>그룹명</OuterText>
-        <InputBox type="text" />
+        <InputBox type="text" placeholder="그룹명을 입력해주세요" />
       </div>
       <div>
         <OuterText>시작기간</OuterText>
-        <InputBox type="date" />
+        <InputBox
+          type="date"
+          data-placeholder="DD, MM, YYYY"
+          onChange={onChange}
+          value={startDate}
+          name="startDate"
+        />
       </div>
       <div>
         <OuterText>종료기간</OuterText>
-        <InputBox type="date" />
+        <InputBox
+          type="date"
+          data-placeholder="DD, MM, YYYY"
+          onChange={onChange}
+          value={endDate}
+          name="endDate"
+        />
       </div>
-      <ConfirmBtn onClick={onClick}>초대코드 생성</ConfirmBtn>
+      <div className={"checkbox-wrapper"}>
+        <div>
+          <CheckBox type="checkbox" />
+          <span>음식</span>
+        </div>
+        <div>
+          <CheckBox type="checkbox" />
+          <span>교통</span>
+        </div>
+      </div>
+      <ConfirmBtn onClick={onReset}>초대코드 생성</ConfirmBtn>
     </React.Fragment>
   );
 }
