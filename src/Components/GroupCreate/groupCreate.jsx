@@ -42,6 +42,34 @@ const CheckBox = styled.input`
 `;
 
 function GroupCreate() {
+  const [inputs, setInputs] = useState({
+    startDate: "",
+    endDate: "",
+  });
+
+  const { startDate, endDate } = inputs;
+
+  const onChange = ({ target }) => {
+    const { name, value } = target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
+  const onReset = () => {
+    if (!dateVerification()) {
+      alert("please check your dates");
+    }
+    setInputs({
+      startDate: "",
+      endDate: "",
+    });
+  };
+
+  const dateVerification = () => {
+    return startDate < endDate ? true : false;
+  };
   return (
     <React.Fragment>
       <div>
