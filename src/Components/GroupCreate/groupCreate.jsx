@@ -36,6 +36,10 @@ const ConfirmBtn = styled.div`
 `;
 
 function GroupCreate() {
+  const onClick = () => {
+    //request some random inviation code from backend
+  };
+
   return (
     <React.Fragment>
       <div>
@@ -50,7 +54,7 @@ function GroupCreate() {
         <OuterText>종료기간</OuterText>
         <InputBox type="date" />
       </div>
-      <ConfirmBtn>초대코드 생성</ConfirmBtn>
+      <ConfirmBtn onClick={onClick}>초대코드 생성</ConfirmBtn>
     </React.Fragment>
   );
 }
