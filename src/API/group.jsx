@@ -19,13 +19,13 @@ export const groupCreate = () => {
     .then((res) => res.data);
 };
 
-export const getRank = (groupd_index) => {
+export const getRank = (group_index) => {
   const tokens = getToken();
   if (!tokens) alert("no tokens valid!");
 
   return axios
     .get(`${process.env.REACT_APP_BASEURL}/group`, {
-      params: { groupd_index },
+      params: { group_index },
       headers: {
         accessToken: tokens.accessToken,
         refreshToken: tokens.refreshToken,
