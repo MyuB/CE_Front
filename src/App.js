@@ -5,6 +5,8 @@ import Traffic from "./Components/Traffic/traffic";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./styles/reset.css";
 import NotFound from "./Components/NotFound/notFound";
+import MyPage from "Components/MyPage/MyPage";
+import SignupForm from "Components/Signup/SignUp";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/group" element={<Group />} />
           <Route path="/groupjoin" element={<GroupJoin />} />
           <Route path="/groupcreate" element={<GroupCreate />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/signup" element={<SignupForm />} />
         </Routes>
       </BrowserRouter>
     </div>
