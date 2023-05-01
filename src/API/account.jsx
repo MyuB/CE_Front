@@ -27,8 +27,7 @@ export const myPageReq = () => {
   return axios
     .get(`${process.env.REACT_APP_BASEURL}/account`, {
       headers: {
-        accessToken: tokens.accessToken,
-        refreshToken: tokens.refreshToken,
+        Authorization: tokens.accessToken,
       },
     })
     .then((res) => res.data);

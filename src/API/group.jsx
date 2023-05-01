@@ -11,8 +11,7 @@ export const groupCreate = () => {
       {},
       {
         headers: {
-          accessToken: tokens.accessToken,
-          refreshToken: tokens.refreshToken,
+          Authorization: tokens.accessToken,
         },
       }
     )
@@ -27,8 +26,7 @@ export const getRank = (group_index) => {
     .get(`${process.env.REACT_APP_BASEURL}/group`, {
       params: { group_index },
       headers: {
-        accessToken: tokens.accessToken,
-        refreshToken: tokens.refreshToken,
+        Authorization: tokens.accessToken,
       },
     })
     .then((res) => res.data);
