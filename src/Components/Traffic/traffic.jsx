@@ -20,9 +20,10 @@ const ConfirmBtn = styled.div`
   height: 8vh;
   text-align: center;
   line-height: 8vh;
-  font-size: 3vh;
+  font-size: 2vh;
+  font-weight: bold;
   border-radius: 10px;
-  background-color: #009688;
+  background-color: #92b8b1;
   color: white;
   margin-bottom: 5vh;
 `;
