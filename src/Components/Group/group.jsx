@@ -18,15 +18,19 @@ function Group() {
   const navigate = useNavigate();
 
   const createGroup = () => {
-    navigate("/createGroup");
+    navigate("/groupcreate");
   };
   const joinGroup = () => {
-    navigate("/joinGroup");
+    navigate("/groupjoin");
+  };
+  const rankGroup = () => {
+    navigate("/rank");
   };
   return (
     <div className={"button-wrapper"}>
       <GroupButton onClick={createGroup}>{"그룹만들기"}</GroupButton>
       <GroupButton onClick={joinGroup}>{"그룹참여하기"}</GroupButton>
+      <GroupButton onClick={rankGroup}>{"내 그룹으로 가기"}</GroupButton>
     </div>
   );
 }
