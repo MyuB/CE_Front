@@ -4,10 +4,14 @@ import { useState } from "react";
 import "./traffic.scss";
 import calculateTime from "./calculateTime";
 import TrafficCarbon from "./trafficCarbon";
+import { useNavigate } from "react-router-dom";
+import Line from "assets/Line.png";
 
 const InputForm = styled.input`
-  width: 40vw;
+  width: 55vw;
   height: 3vh;
+  display: block;
+  border: 1px solid black;
 `;
 
 const ConfirmBtn = styled.div`
@@ -17,7 +21,6 @@ const ConfirmBtn = styled.div`
   line-height: 8vh;
   font-size: 3vh;
   border-radius: 10px;
-  margin-top: 15vh;
   background-color: #009688;
   color: white;
   margin-bottom: 5vh;
@@ -42,10 +45,29 @@ const CarbonText = styled.div`
   margin-bottom: 7.5vh;
 `;
 
+const CarbonCalced = styled.div`
+  text-align: center;
+  font-size: 2.5vh;
+  font-weight: bold;
+  color: #009688;
+`;
+
+const CarbonUsed = styled.div`
+  text-align: center;
+  font-size: 2vh;
+  color: rgba(0, 150, 136, 0.7);
+`;
+
 function Traffic() {
+  const navigate = useNavigate();
+
   const [start, setStartState] = useState(null);
   const [end, setEndState] = useState(null);
   const [time, setTime] = useState(null);
+
+  const moveToSolution = () => {
+    navigate("/trafficsol");
+  };
 
   const calculateRoutes = () => {
     const directionsService = new window.google.maps.DirectionsService();
@@ -79,9 +101,18 @@ function Traffic() {
 
   return (
     <div className={"traffic-wrapper"}>
+      <CarbonCalced>
+        {time ? (
+          <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
+        ) : (
+          0
+        )}{" "}
+        C / kwh
+      </CarbonCalced>
+      <CarbonUsed>{"carbon used"}</CarbonUsed>
+      <img src={Line} alt="" />
       <div className={"input-wrapper"}>
         <div className={"text-wrapper"}>
-          <span>출발지</span>
           <InputForm
             id="start"
             placeholder="출발지를 입력해주세요"
@@ -90,7 +121,6 @@ function Traffic() {
           />
         </div>
         <div className={"text-wrapper"}>
-          <span>도착지</span>
           <InputForm
             id="end"
             placeholder="도착지를 입력해주세요"
@@ -113,7 +143,8 @@ function Traffic() {
       </CarbonBox>
 
       <div className="button-wrapper">
-        <ConfirmBtn onClick={setValues}>다음</ConfirmBtn>
+        <ConfirmBtn onClick={setValues}>계산</ConfirmBtn>
+        <ConfirmBtn onClick={moveToSolution}>솔루션</ConfirmBtn>
       </div>
     </div>
   );
