@@ -9,6 +9,7 @@ import MyPage from "Components/MyPage/MyPage";
 import SignupForm from "Components/Signup/SignUp";
 import GroupRanking from "Components/GroupRanking/GroupRanking";
 import Main from "Components/Main/Main";
+import TrafficSolution from "Components/Traffic/TrafficSolution";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/main" element={<Main />} />
+          <Route path="/trafficsol" element={<TrafficSolution />} />
         </Routes>
       </BrowserRouter>
     </div>
