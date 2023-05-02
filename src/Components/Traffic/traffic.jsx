@@ -85,10 +85,11 @@ const CalcedBoxMessage = styled.div`
 
 function Traffic() {
   const navigate = useNavigate();
-
-  const [start, setStartState] = useState(null);
-  const [end, setEndState] = useState(null);
   const [time, setTime] = useState(null);
+  const [inputs, setInputs] = useState({
+    start: "",
+    end: "",
+  });
 
   const moveToSolution = () => {
     navigate("/trafficsol");
@@ -99,8 +100,8 @@ function Traffic() {
 
     directionsService.route(
       {
-        origin: start,
-        destination: end,
+        origin: inputs.start,
+        destination: inputs.end,
         travelMode: window.google.maps.TravelMode.TRANSIT,
       },
       (result, status) => {
@@ -116,12 +117,12 @@ function Traffic() {
     );
   };
 
-  const setValues = () => {
-    const startInput = document.querySelector("#start");
-    const endInput = document.querySelector("#end");
-    setStartState(startInput.value);
-    setEndState(endInput.value);
-    calculateRoutes();
+  const onChange = ({ target }) => {
+    const { name, value } = target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
   };
 
   return (
@@ -142,10 +143,22 @@ function Traffic() {
       <Address>주소</Address>
       <div className={"input-wrapper"}>
         <div className={"text-wrapper"}>
-          <InputForm id="start" placeholder="출발지를 입력해주세요" required />
+          <InputForm
+            id="start"
+            placeholder="출발지를 입력해주세요"
+            required
+            name="start"
+            onChange={onChange}
+          />
         </div>
         <div className={"text-wrapper"}>
-          <InputForm id="end" placeholder="도착지를 입력해주세요" required />
+          <InputForm
+            id="end"
+            placeholder="도착지를 입력해주세요"
+            required
+            name="end"
+            onChange={onChange}
+          />
         </div>
       </div>
       <CalcedBoxesWrapper>
@@ -173,7 +186,7 @@ function Traffic() {
         </CalcedResultBox>
       </CalcedBoxesWrapper>
       <div className="button-wrapper">
-        <ConfirmBtn onClick={setValues}>계산</ConfirmBtn>
+        <ConfirmBtn onClick={calculateRoutes}>계산</ConfirmBtn>
         <ConfirmBtn onClick={moveToSolution}>솔루션</ConfirmBtn>
       </div>
     </div>
