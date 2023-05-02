@@ -8,10 +8,11 @@ import { useNavigate } from "react-router-dom";
 import Line from "assets/Line.png";
 
 const InputForm = styled.input`
-  width: 55vw;
-  height: 3vh;
+  width: 80vw;
+  height: 5vh;
   display: block;
   border: 1px solid black;
+  border-radius: 1vh;
 `;
 
 const ConfirmBtn = styled.div`
@@ -26,25 +27,6 @@ const ConfirmBtn = styled.div`
   margin-bottom: 5vh;
 `;
 
-const CarbonBox = styled.div`
-  padding: 1vh;
-  height: 35vh;
-  width: 35vh;
-  background-color: rgb(0, 150, 136);
-  margin: 0 auto;
-  color: white;
-  font-size: 10vw;
-  text-align: center;
-  border-radius: 10%;
-`;
-
-const CarbonText = styled.div`
-  text-align: center;
-  font-size: 8vw;
-  margin-top: 3vh;
-  margin-bottom: 7.5vh;
-`;
-
 const CarbonCalced = styled.div`
   text-align: center;
   font-size: 2.5vh;
@@ -56,6 +38,49 @@ const CarbonUsed = styled.div`
   text-align: center;
   font-size: 2vh;
   color: rgba(0, 150, 136, 0.7);
+`;
+
+const Address = styled.div`
+  font-size: 2.5vh;
+  color: black;
+  font-weight: bold;
+  margin: 10vw 0 3vw 7vw;
+`;
+
+const CalcedBoxesWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const CalcedResultBox = styled.div`
+  height: 7vh;
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+`;
+
+const CalcedBoxImageWrapper = styled.div`
+  height: 5vh;
+  width: 5vh;
+  background-color: rgba(146, 184, 177, 0.6);
+  border-radius: 2vw;
+`;
+
+const CalcedBoxMessageWrapper = styled.div`
+  display: flex;
+  color: black;
+  align-items: center;
+  justify-content: space-between;
+  width: 55vw;
+`;
+
+const CalcedBoxMessage = styled.div`
+  font-size: 2vh;
+  line-height: 2vh;
+  color: black;
+  font-weight: bold;
 `;
 
 function Traffic() {
@@ -101,6 +126,9 @@ function Traffic() {
 
   return (
     <div className={"traffic-wrapper"}>
+      <LoadScript
+        googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
+      ></LoadScript>
       <CarbonCalced>
         {time ? (
           <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
@@ -110,38 +138,40 @@ function Traffic() {
         C / kwh
       </CarbonCalced>
       <CarbonUsed>{"carbon used"}</CarbonUsed>
-      <img src={Line} alt="" />
+      <img src={Line} alt="" className={"line-image"} />
+      <Address>주소</Address>
       <div className={"input-wrapper"}>
         <div className={"text-wrapper"}>
-          <InputForm
-            id="start"
-            placeholder="출발지를 입력해주세요"
-            type={"text"}
-            required
-          />
+          <InputForm id="start" placeholder="출발지를 입력해주세요" required />
         </div>
         <div className={"text-wrapper"}>
-          <InputForm
-            id="end"
-            placeholder="도착지를 입력해주세요"
-            type={"text"}
-            required
-          />
+          <InputForm id="end" placeholder="도착지를 입력해주세요" required />
         </div>
       </div>
-      <LoadScript
-        googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
-      ></LoadScript>
-      <CarbonBox>
-        <CarbonText>{"이동하는데 소비된 탄소 소비량"}</CarbonText>
-        {time ? (
-          <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
-        ) : (
-          0
-        )}{" "}
-        C / kwh
-      </CarbonBox>
-
+      <CalcedBoxesWrapper>
+        <CalcedResultBox>
+          <CalcedBoxImageWrapper id={"123"}>
+            {/* 여기 안에 픽토그램 들어갈 것 */}
+          </CalcedBoxImageWrapper>
+          <CalcedBoxMessageWrapper>
+            <CalcedBoxMessage>도보 이용 시</CalcedBoxMessage>
+            <CalcedBoxMessage style={{ color: "#009688" }}>
+              0 C/kwh
+            </CalcedBoxMessage>
+          </CalcedBoxMessageWrapper>
+        </CalcedResultBox>
+        <CalcedResultBox>
+          <CalcedBoxImageWrapper>
+            {/* 여기 안에 픽토그램 들어갈 것 */}
+          </CalcedBoxImageWrapper>
+          <CalcedBoxMessageWrapper>
+            <CalcedBoxMessage>자가용 이용 시</CalcedBoxMessage>
+            <CalcedBoxMessage style={{ color: "#009688" }}>
+              {/* 계산 결과 */ "C/kwh"}
+            </CalcedBoxMessage>
+          </CalcedBoxMessageWrapper>
+        </CalcedResultBox>
+      </CalcedBoxesWrapper>
       <div className="button-wrapper">
         <ConfirmBtn onClick={setValues}>계산</ConfirmBtn>
         <ConfirmBtn onClick={moveToSolution}>솔루션</ConfirmBtn>
