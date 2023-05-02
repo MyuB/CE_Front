@@ -8,6 +8,7 @@ import NotFound from "./Components/NotFound/notFound";
 import MyPage from "Components/MyPage/MyPage";
 import SignupForm from "Components/Signup/SignUp";
 import GroupRanking from "Components/GroupRanking/GroupRanking";
+import Main from "Components/Main/Main";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/rank" element={<GroupRanking />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signup" element={<SignupForm />} />
+          <Route path="/main" element={<Main />} />
         </Routes>
       </BrowserRouter>
     </div>
