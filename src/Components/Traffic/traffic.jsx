@@ -115,6 +115,8 @@ function Traffic() {
         }
       }
     );
+
+    resetInputValues();
   };
 
   const onChange = ({ target }) => {
@@ -122,6 +124,13 @@ function Traffic() {
     setInputs({
       ...inputs,
       [name]: value,
+    });
+  };
+
+  const resetInputValues = () => {
+    setInputs({
+      start: "",
+      end: "",
     });
   };
 
