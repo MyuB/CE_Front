@@ -3,6 +3,15 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { months } from "utils/months";
 
+const MainWrapper = styled.div`
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: stretch;
+  flex-direction: column;
+  margin-top: 10vh;
+`;
+
 const GroupBoxWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -99,7 +108,7 @@ function Main() {
   };
 
   return (
-    <div>
+    <MainWrapper>
       <Comment>Hi, {/* 여기에 이름 들어감 */}</Comment>
       <CurrentDate>{getDate()}</CurrentDate>
       <GroupBoxWrapper>
@@ -111,7 +120,7 @@ function Main() {
         <GroupBox onClick={goToFood}>{"음식 입력"}</GroupBox>
         <GroupBox onClick={goToGroup}>{"그룹"}</GroupBox>
       </GroupBoxWrapper>
-    </div>
+    </MainWrapper>
   );
 }
 
