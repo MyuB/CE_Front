@@ -10,6 +10,7 @@ import SignupForm from "Components/Signup/SignUp";
 import GroupRanking from "Components/GroupRanking/GroupRanking";
 import Main from "Components/Main/Main";
 import TrafficSolution from "Components/Traffic/TrafficSolution";
+import Login from "Components/Login/Login";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/rank" element={<GroupRanking />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signup" element={<SignupForm />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/main" element={<Main />} />
           <Route path="/trafficsol" element={<TrafficSolution />} />
         </Routes>
