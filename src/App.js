@@ -11,10 +11,12 @@ import Main from "Components/Main/Main";
 import TrafficSolution from "Components/Traffic/TrafficSolution";
 import Login from "Components/Login/Login";
 import Register from "Components/Register/register";
+import Header from "Components/Header/Header";
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NotFound />} />
