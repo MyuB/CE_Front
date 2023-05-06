@@ -123,12 +123,12 @@ function Register() {
       <ComponentsWrapper>
         <SmallWrapper>
           <SmallText>{"이름"}</SmallText>
-          <InputBox name="name" />
+          <InputBox name="name" onChange={onChange} />
         </SmallWrapper>
         <SmallWrapper>
           <SmallText>{"이메일"}</SmallText>
           <EmailWrapper>
-            <InputBox name="email" />
+            <InputBox name="email" onChange={onChange} />
             <VerificationButton onClick={onClickVerification}>
               {"인증번호"}
             </VerificationButton>
@@ -138,7 +138,7 @@ function Register() {
           <SmallWrapper>
             <SmallText>{"인증번호"}</SmallText>
             <EmailWrapper>
-              <InputBox name="emailCode" />
+              <InputBox name="emailCode" onChange={onChange} />
               <VerificationButton onClick={onClickVerification}>
                 {"확인"}
               </VerificationButton>
@@ -147,11 +147,11 @@ function Register() {
         )}
         <SmallWrapper>
           <SmallText>{"비밀번호"}</SmallText>
-          <InputBox name="password" />
+          <InputBox name="password" onChange={onChange} />
         </SmallWrapper>
         <SmallWrapper>
           <SmallText>{"비밀번호 확인"}</SmallText>
-          <InputBox />
+          <InputBox name="passwordValidation" onChange={onChange} />
         </SmallWrapper>
       </ComponentsWrapper>
 
