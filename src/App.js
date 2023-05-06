@@ -6,11 +6,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./styles/reset.css";
 import NotFound from "./Components/NotFound/notFound";
 import MyPage from "Components/MyPage/MyPage";
-import SignupForm from "Components/Signup/SignUp";
 import GroupRanking from "Components/GroupRanking/GroupRanking";
 import Main from "Components/Main/Main";
 import TrafficSolution from "Components/Traffic/TrafficSolution";
 import Login from "Components/Login/Login";
+import Register from "Components/Register/register";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           <Route path="/groupcreate" element={<GroupCreate />} />
           <Route path="/rank" element={<GroupRanking />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/signup" element={<SignupForm />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/main" element={<Main />} />
           <Route path="/trafficsol" element={<TrafficSolution />} />
