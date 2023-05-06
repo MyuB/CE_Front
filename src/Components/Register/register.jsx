@@ -1,6 +1,8 @@
 import { emailVerification } from "API/email";
+import { registerReq } from "API/account";
 import { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -75,6 +77,7 @@ const VerificationButton = styled.div`
 `;
 
 function Register() {
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",
@@ -83,11 +86,9 @@ function Register() {
     passwordValidation: "",
     emailCode: "",
   });
-  //this is for check if given two passwords are same
-  const [pwValidation, setPwValidation] = useState("");
 
   const checkPassword = () => {
-    return inputs.password === pwValidation;
+    return inputs.password === inputs.passwordValidation;
   };
 
   const onClickVerification = () => {
@@ -115,6 +116,10 @@ function Register() {
       alert("비밀번호가 일치하지 않아요!");
       return;
     }
+    registerReq(inputs.name, inputs.email, inputs.password).then((res) => {
+      if (res.success) navigate("/login");
+      else alert("회원가입에 실패했습니다.");
+    });
   };
 
   return (
@@ -154,7 +159,7 @@ function Register() {
           <InputBox name="passwordValidation" onChange={onChange} />
         </SmallWrapper>
       </ComponentsWrapper>
-
+      {/* 이 box를 클릭한다면, tryRegister를 실행해야함 */}
       <RegisterBox>{"REGISTER"}</RegisterBox>
     </MainWrapper>
   );
