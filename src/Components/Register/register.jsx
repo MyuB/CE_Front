@@ -75,7 +75,7 @@ const VerificationButton = styled.div`
 `;
 
 function Register() {
-  const [verification, setVerification] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
@@ -91,7 +91,7 @@ function Register() {
   };
 
   const onClickVerification = () => {
-    setVerification(true);
+    setToggle(true);
     emailVerification(inputs.email).then((res) =>
       setInputs({
         ...inputs,
@@ -134,7 +134,7 @@ function Register() {
             </VerificationButton>
           </EmailWrapper>
         </SmallWrapper>
-        {verification && (
+        {toggle && (
           <SmallWrapper>
             <SmallText>{"인증번호"}</SmallText>
             <EmailWrapper>
