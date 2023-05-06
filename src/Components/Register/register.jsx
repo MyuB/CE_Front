@@ -85,6 +85,7 @@ function Register() {
     password: "",
     passwordValidation: "",
     emailCode: "",
+    serverEmailCode: "",
   });
 
   const checkPassword = () => {
@@ -96,12 +97,19 @@ function Register() {
     emailVerification(inputs.email).then((res) =>
       setInputs({
         ...inputs,
-        emailCode: String(res.code),
+        serverEmailCode: String(res.code),
       })
     );
   };
 
-  const checkEmailCode = () => {};
+  const checkEmailCode = () => {
+    return inputs.emailCode === inputs.serverEmailCode;
+  };
+
+  const onClickCheckEmailCode = () => {
+    if (!checkEmailCode()) alert("wrong verification!");
+    else alert("success");
+  };
 
   const onChange = ({ target }) => {
     const { name, value } = target;
