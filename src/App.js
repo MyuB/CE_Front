@@ -16,8 +16,8 @@ import Header from "Components/Header/Header";
 function App() {
   return (
     <div className="App">
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<NotFound />} />
           <Route path="/traffic" element={<Traffic />} />
