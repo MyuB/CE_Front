@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Line from "assets/Line.png";
+import leftArrow from "assets/left-arrow.png";
 import { useNavigate } from "react-router-dom";
 
 //일반적으로 사용하는 Wrapper
@@ -26,6 +26,22 @@ const MainWrapper = styled.div`
   width: 100%;
 `;
 
+const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const LeftBtn = styled.img`
+  height: 4vh;
+  width: 4vh;
+`;
+
+const EmptyBox = styled.div`
+  height: 10vh;
+  width: 4vh;
+`;
+
 function Header() {
   const navigate = useNavigate();
 
@@ -47,7 +63,13 @@ function Header() {
       return <MainWrapper color={WrapperColor.white} />;
 
     return (
-      <NormalWrapper color={WrapperColor.white}>{componentUrl}</NormalWrapper>
+      <NormalWrapper color={WrapperColor.white}>
+        <BtnWrapper>
+          <LeftBtn src={leftArrow} alt={"temp"} onClick={() => navigate(-1)} />
+          <div>{componentUrl}</div>
+          <EmptyBox />
+        </BtnWrapper>
+      </NormalWrapper>
     );
   };
 
