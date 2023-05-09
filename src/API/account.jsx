@@ -11,11 +11,11 @@ export const registerReq = (name, email, pw) => {
     .then((res) => res.data);
 };
 
-export const logInReq = () => {
+export const logInReq = (id, password) => {
   return axios
     .post(`${process.env.REACT_APP_BASEURL}/account/login`, {
-      email: "asd@naver.com",
-      pw: "asd12345",
+      email: id,
+      pw: password,
     })
     .then((res) => res.data);
 };
@@ -31,6 +31,23 @@ export const myPageReq = () => {
       },
     })
     .then((res) => res.data);
+};
+
+export const myPageModification = (name, email, old_password, new_password) => {
+  const tokens = getToken();
+
+  return axios.put(
+    `${process.env.REACT_APP_BASEURL}/accout`,
+    {
+      name,
+      email,
+      old_password,
+      new_password,
+    },
+    {
+      Authorization: tokens.accessToken,
+    }
+  );
 };
 
 export const averageConsume = () => {
