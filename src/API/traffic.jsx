@@ -3,7 +3,6 @@ import { getToken } from "utils/localStorage";
 
 export const setTrafficCarbon = (carbon) => {
   const tokens = getToken();
-
   return axios
     .post(
       `${process.env.REACT_APP_BASEURL}/traffic`,
@@ -21,7 +20,7 @@ export const getTrafficSolution = () => {
   const tokens = getToken();
 
   return axios
-    .get(`${process.env.REACT_APP_BASEURL}/traffic`, {
+    .get(`${process.env.REACT_APP_BASEURL}/traffic/solution`, {
       headers: {
         Authorization: tokens.accessToken,
       },

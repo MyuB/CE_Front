@@ -152,7 +152,7 @@ function Register() {
             <SmallText>{"인증번호"}</SmallText>
             <EmailWrapper>
               <InputBox name="emailCode" onChange={onChange} />
-              <VerificationButton onClick={onClickVerification}>
+              <VerificationButton onClick={onClickCheckEmailCode}>
                 {"확인"}
               </VerificationButton>
             </EmailWrapper>
@@ -168,7 +168,7 @@ function Register() {
         </SmallWrapper>
       </ComponentsWrapper>
       {/* 이 box를 클릭한다면, tryRegister를 실행해야함 */}
-      <RegisterBox>{"REGISTER"}</RegisterBox>
+      <RegisterBox onClick={tryRegister}>{"REGISTER"}</RegisterBox>
     </MainWrapper>
   );
 }

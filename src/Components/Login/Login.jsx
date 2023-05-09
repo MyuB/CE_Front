@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import "./Login.scss";
+import { setToken } from "utils/localStorage";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -65,7 +66,10 @@ function Login() {
 
   const handleLogin = () => {
     logInReq(id, password).then((res) => {
-      if (res.success) navigate("/main");
+      if (res.success) {
+        setToken(res.access_token, res.refresh_token);
+        navigate("/main");
+      }
     });
   };
 
