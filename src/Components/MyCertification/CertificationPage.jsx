@@ -1,83 +1,163 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
-function CertificationPage() {
-  const history = useHistory();
+import { useState } from "react";
+import React from "react";
+import axios from 'axios';
+import styled from "styled-components";
+//import "./CertificationPage.scss";
 
-  // 사용자 입력을 관리하는 상태 변수
-  const [groupName, setGroupName] = useState(""); // 실제 그룹 이름으로 변경하기
-  const [groupPeriod, setGroupPeriod] = useState("2023/04/01 - 2023/04/01"); // 그룹 기간으로 변경하기
-  const [userName, setUserName] = useState(""); // 유저네임으로 변경하기
-  const [userPhoto, setUserPhoto] = useState(null); // 선택한 인증 사진을 저장하는 상태 변수
-  const [userDate, setUserDate] = useState(""); // 사진 업로드 날짜를 저장하는 상태 변수
+const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-  const [showDatePicker, setShowDatePicker] = useState(false); // 날짜 선택 보이기/ 숨기기
-  const [selectedDate, setSelectedDate] = useState(null); // 날짜 선택
+const TopText = styled.div`
+  color: black;
+  font-size: 2vh;
+  margin-left: 4vh;
+    margin-top:4vh;
+  // margin-left: 3vh;
+`;
 
-  // 사진 선택 처리 함수
-  function handlePhotoSelection(event) {
-    const file = event.target.files[0];
-    setUserPhoto(file);
-    setUserDate(new Date().toLocaleDateString()); // 업로드 날짜를 현재 날짜로 설정!!
-  }
 
-  // 사진이랑 날짜 저장 함수
-  function handleSave() {
-    if (userPhoto && selectedDate) {
-      setUserDate(selectedDate);
-      history.push("/확인"); //
-    } else {
-      alert("사진과 날짜를 선택하세요.");
-    }
-  }
+const DateBox = styled.input`
+  border:none;
+  background-color:transparent;
+`;
+
+
+
+//
+
+const GreyLine = styled.div`
+border-bottom: 0.3lvh solid #061941;
+opacity:0.1;
+margin-top:2vh;
+margin-left: 4vh;
+margin-right:4vh;
+`;
+
+
+const TableWrapper = styled.div`
+  margin-left: 4vh;
+  margin-right:4vh;
+  margin-top:5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const GreyWrapper = styled.div`
+margin-left: 4vh;
+margin-right:4vh;
+margin-top:5vh;
+line-height: 5vh;
+border-radius: 1vw;
+background-color:#EDEFF7;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+
+`;
+
+const TableCell = styled.div`
+  padding-left: 4vh;
+  padding-right:4vh;
+  font-size: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+
+const AddBtn = styled.div`
+height: 5vh;
+margin-left: 4vh;
+margin-right:4vh;
+margin-top:5vh;
+color: black;
+font-size: 4vh;
+line-height: 5vh;
+background-color: #EDEFF7;
+border-radius: 1vh;
+text-align: center;
+
+`;
+
+
+
+
+
+
+
+
+
+
+
+
+function Certification() {
+
+    const [inputs, setInputs] = useState({
+      DateInput: "",
+  });
+
+
+  const [count, setCount] = useState(1);
+
+  const handleAddBox = () => {
+    setCount(count + 1);
+  };
+
+
+  const onChange = ({ target }) => {
+    const { name, value } = target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+
+
+
+
+
+    
+  };
+
+
+
 
   return (
-    <div>
-      {/* Header */}
-      <header>
-        <button>Back Arrow Button</button>
-        <h1>{userName} 인증</h1>
-      </header>
+    <MainWrapper>
 
-      {/* 그룹 정보 */}
-      <div>
-        <p>일일 인증 최소 1번 이상</p>
-        <p>{groupPeriod}</p>
-        <div className="date-picker-container">
-          <div
-            className="toggle"
-            onClick={() => setShowDatePicker(!showDatePicker)}
-          >
-            <span>날짜 선택</span>
-            {showDatePicker ? (
-              <i className="fas fa-chevron-up"></i>
-            ) : (
-              <i className="fas fa-chevron-down"></i>
-            )}
-          </div>
-          {showDatePicker && (
-            <div className="date-picker">
-              {/* 날짜 선택 라이브러리 */}
-              <input
-                type="date"
-                onChange={(e) => setSelectedDate(e.target.value)}
-              />
-            </div>
-          )}
-        </div>
-      </div>
 
-      {/* 사용자 정보 */}
-      <div>
-        <h2>{userName}</h2>
-        <input type="file" onChange={handlePhotoSelection} />
-        {userPhoto && (
-          <img src={URL.createObjectURL(userPhoto)} alt="Authentication" />
-        )}
-        <button onClick={handleSave}>Save</button>
-      </div>
-    </div>
+  
+
+
+  
+
+      <TopText>일일 인증 최소 1회 이상</TopText>
+      <GreyLine></GreyLine>
+      <TableWrapper>
+        <TableCell>이름{/* 여기에 이름 들어감 */}</TableCell>
+        <TableCell>인증 사진</TableCell>
+        <TableCell>날짜</TableCell>
+      </TableWrapper>
+      {[...Array(count)].map((_, index) => (
+          <GreyWrapper>
+          <TableCell>이름</TableCell>
+          <TableCell>인증 사진</TableCell>
+          <TableCell><DateBox
+            type="date"
+          /></TableCell>
+        </GreyWrapper>
+        ))}
+
+      <AddBtn onClick={handleAddBox}>+</AddBtn>
+    </MainWrapper>
   );
 }
 
-export default CertificationPage;
+export default Certification;
+
+
