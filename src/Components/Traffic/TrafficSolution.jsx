@@ -21,11 +21,13 @@ const SolutionBox = styled.div`
 
 function TrafficSolution() {
   const [solution, setSolution] = useState();
-  //setSolution(getTrafficSolution());
+  getTrafficSolution().then((res) => setSolution(res.data[0]));
 
   return (
     <Wrapper>
-      <SolutionBox>{"solution"}</SolutionBox>
+      <SolutionBox>
+        {solution ? solution.solution : "solution not ready"}
+      </SolutionBox>
     </Wrapper>
   );
 }

@@ -6,6 +6,7 @@ import calculateTime from "./calculateTime";
 import TrafficCarbon from "./trafficCarbon";
 import { useNavigate } from "react-router-dom";
 import Line from "assets/Line.png";
+import { setTrafficCarbon } from "API/traffic";
 
 const InputForm = styled.input`
   width: 80vw;
@@ -135,6 +136,10 @@ function Traffic() {
     });
   };
 
+  const tryAPIconnection = () => {
+    setTrafficCarbon(5).then((res) => console.log(res));
+  };
+
   return (
     <div className={"traffic-wrapper"}>
       <LoadScript
@@ -196,7 +201,7 @@ function Traffic() {
         </CalcedResultBox>
       </CalcedBoxesWrapper>
       <div className="button-wrapper">
-        <ConfirmBtn onClick={calculateRoutes}>계산</ConfirmBtn>
+        <ConfirmBtn onClick={tryAPIconnection}>계산</ConfirmBtn>
         <ConfirmBtn onClick={moveToSolution}>솔루션</ConfirmBtn>
       </div>
     </div>
