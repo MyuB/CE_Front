@@ -33,6 +33,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/trafficsol" element={<TrafficSolution />} />
           <Route path="/mycertification" element={<Certification />} />
+          <Route path={"*"} element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
