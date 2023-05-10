@@ -61,6 +61,9 @@ function Header() {
       return <TrafficWrapper color={WrapperColor.traffic}></TrafficWrapper>;
     if (componentUrl === "main")
       return <MainWrapper color={WrapperColor.white} />;
+    if (componentUrl === "") {
+      return <TrafficWrapper color={WrapperColor.traffic} />;
+    }
 
     return (
       <NormalWrapper color={WrapperColor.white}>
