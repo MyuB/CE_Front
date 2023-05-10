@@ -27,7 +27,7 @@ const ButtonsWrapper = styled.div`
 `;
 
 const MainButton = styled.div`
-  background-color: #009688;
+  background-color: #92b8b1;
   color: white;
   font-size: 4vh;
   width: 25vh;
