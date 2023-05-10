@@ -2,7 +2,7 @@ import { getMainPageInfo } from "API/main";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { months } from "utils/months";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -80,6 +80,9 @@ const CarbonUsage = styled.span`
 function Main() {
   const navigate = useNavigate();
   const [infos, setInfos] = useState();
+  useEffect(() => {
+    getMainPageInfo().then((res) => setInfos(res));
+  }, [infos]);
 
   const goToTraffic = () => {
     navigate("/traffic");
@@ -108,11 +111,6 @@ function Main() {
 
     return dayOfWeek + ", " + todayDate + " " + curMonth;
   };
-
-  // getMainPageInfo().then((res) => {
-  //   setInfos(res);
-  //   console.log(infos);
-  // });
 
   return (
     <MainWrapper>
