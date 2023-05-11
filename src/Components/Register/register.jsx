@@ -167,7 +167,6 @@ function Register() {
           <InputBox name="passwordValidation" onChange={onChange} />
         </SmallWrapper>
       </ComponentsWrapper>
-      {/* 이 box를 클릭한다면, tryRegister를 실행해야함 */}
       <RegisterBox onClick={tryRegister}>{"REGISTER"}</RegisterBox>
     </MainWrapper>
   );
