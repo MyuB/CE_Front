@@ -14,6 +14,7 @@ import Register from "Components/Register/register";
 import Header from "Components/Header/Header";
 import Certification from "./Components/MyCertification/CertificationPage";
 import Home from "Components/Home/Home";
+import Member from "Components/GroupMember/Member";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/group" element={<Group />} />
           <Route path="/groupjoin" element={<GroupJoin />} />
           <Route path="/groupcreate" element={<GroupCreate />} />
+          <Route path="/groupmember" element={<Member />} />
           <Route path="/rank" element={<GroupRanking />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/register" element={<Register />} />
