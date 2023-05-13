@@ -160,11 +160,15 @@ function Register() {
         )}
         <SmallWrapper>
           <SmallText>{"비밀번호"}</SmallText>
-          <InputBox name="password" onChange={onChange} />
+          <InputBox name="password" onChange={onChange} type={"password"} />
         </SmallWrapper>
         <SmallWrapper>
           <SmallText>{"비밀번호 확인"}</SmallText>
-          <InputBox name="passwordValidation" onChange={onChange} />
+          <InputBox
+            name="passwordValidation"
+            onChange={onChange}
+            type={"password"}
+          />
         </SmallWrapper>
       </ComponentsWrapper>
       <RegisterBox onClick={tryRegister}>{"REGISTER"}</RegisterBox>
