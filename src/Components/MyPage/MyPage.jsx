@@ -1,5 +1,5 @@
 // 첫 번째 페이지
-import { myPageReq } from "API/account";
+import { myPageModification, myPageReq } from "API/account";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -55,7 +55,10 @@ function MyPage() {
 
   useEffect(() => {
     myPageReq().then((res) => {
-      setServerData(res.user_name, res.email);
+      setServerData({
+        username: res.user_name,
+        email: res.email,
+      });
     });
   }, []);
 
@@ -64,6 +67,16 @@ function MyPage() {
     setInputs({
       ...inputs,
       [name]: value,
+    });
+  };
+
+  const modifyMyData = () => {
+    myPageModification(inputs.username, inputs.email).then((res) => {
+      if (res.success) {
+        alert("회원정보가 수정되었습니다!");
+      } else {
+        alert("something wrong");
+      }
     });
   };
 
@@ -93,7 +106,7 @@ function MyPage() {
             />
           </InfoWrapper>
         </InfoWrapper>
-        <ModifyBox type="submit">수정</ModifyBox>
+        <ModifyBox onClick={modifyMyData}>수정</ModifyBox>
       </form>
     </div>
   );
