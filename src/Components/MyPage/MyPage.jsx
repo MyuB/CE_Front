@@ -1,7 +1,7 @@
 // 첫 번째 페이지
-import { useState } from "react";
+import { myPageModification, myPageReq } from "API/account";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-
 
 const InfoWrapper = styled.div`
   display: flex;
@@ -10,25 +10,24 @@ const InfoWrapper = styled.div`
   margin-bottom: 2vh;
 `;
 
-
 const InfoText = styled.div`
   color: black;
   font-size: 2vh;
   margin-left: 8vh;
-  font-weight:bold;
+  font-weight: bold;
 `;
 
 const GreyBox = styled.input`
   width: 80vw;
   padding: 0.1lvh 0.1lvh 0.1lvh 0.5lvh;
   margin: 10vh auto 0 auto;
-  margin-top:5vh;
+  margin-top: 5vh;
   line-height: 5vh;
   border-radius: 1vw;
   border: none;
-  background-color:#E5E5E5;
+  background-color: #e5e5e5;
   display: flex;
-  opacity:0.5;
+  opacity: 0.5;
 `;
 
 const ModifyBox = styled.div`
@@ -44,61 +43,70 @@ const ModifyBox = styled.div`
   margin: 10vh auto 0 auto;
 `;
 
-
-
 function MyPage() {
-  const [username, setUsername] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  const [serverData, setServerData] = useState({
+    username: "",
+    email: "",
+  });
+  const [inputs, setInputs] = useState({
+    username: "",
+    email: "",
+  });
 
-  const handleInputChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-    if (name === "username") {
-      setUsername(value);
-    } else if (name === "phone") {
-      setPhone(value);
-    } else if (name === "email") {
-      setEmail(value);
-    }
+  useEffect(() => {
+    myPageReq().then((res) => {
+      setServerData({
+        username: res.user_name,
+        email: res.email,
+      });
+    });
+  }, []);
+
+  const onChange = ({ target }) => {
+    const { name, value } = target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
+  const modifyMyData = () => {
+    myPageModification(inputs.username, inputs.email).then((res) => {
+      if (res.success) {
+        alert("회원정보가 수정되었습니다!");
+      } else {
+        alert("something wrong");
+      }
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 수정 버튼을 클릭할 때 사용자 정보 업데이트를 처리하는 로직 추가
-
-
-
-    
   };
   return (
-
-
     <div>
-
       <form onSubmit={handleSubmit}>
         <InfoWrapper>
-        <InfoWrapper>
-          <InfoText>이름</InfoText>
-          <GreyBox
-            type="text"
-            name="username"
-            value={username}
-            onChange={handleInputChange}
-          />
+          <InfoWrapper>
+            <InfoText>이름</InfoText>
+            <GreyBox
+              type="text"
+              name="username"
+              onChange={onChange}
+              placeholder={serverData.username}
+            />
           </InfoWrapper>
           <InfoWrapper>
-          <InfoText>이메일</InfoText>
-          <GreyBox
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleInputChange}
-          />
+            <InfoText>이메일</InfoText>
+            <GreyBox
+              type="email"
+              name="email"
+              onChange={onChange}
+              placeholder={serverData.email}
+            />
           </InfoWrapper>
         </InfoWrapper>
-        <ModifyBox type="submit">수정</ModifyBox>
+        <ModifyBox onClick={modifyMyData}>수정</ModifyBox>
       </form>
     </div>
   );

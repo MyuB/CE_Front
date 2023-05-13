@@ -69,6 +69,8 @@ function Login() {
       if (res.success) {
         setToken(res.access_token, res.refresh_token);
         navigate("/main");
+      } else {
+        alert("something wrong");
       }
     });
   };
