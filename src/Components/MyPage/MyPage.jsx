@@ -55,9 +55,9 @@ function MyPage() {
 
   useEffect(() => {
     myPageReq().then((res) => {
-      setServerData(res);
+      setServerData(res.user_name, res.email);
     });
-  });
+  }, []);
 
   const onChange = ({ target }) => {
     const { name, value } = target;
@@ -69,7 +69,6 @@ function MyPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 수정 버튼을 클릭할 때 사용자 정보 업데이트를 처리하는 로직 추가
   };
   return (
     <div>
