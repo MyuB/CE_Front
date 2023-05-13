@@ -33,7 +33,7 @@ export const myPageReq = () => {
     .then((res) => res.data);
 };
 
-export const myPageModification = (name, email, old_password, new_password) => {
+export const myPageModification = (name, email) => {
   const tokens = getToken();
 
   return axios.put(
@@ -41,8 +41,6 @@ export const myPageModification = (name, email, old_password, new_password) => {
     {
       name,
       email,
-      old_password,
-      new_password,
     },
     {
       Authorization: tokens.accessToken,
