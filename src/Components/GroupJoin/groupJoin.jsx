@@ -1,4 +1,5 @@
-import React from "react";
+import { joinGourp } from "API/group";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Redeem = styled.div`
@@ -36,14 +37,29 @@ const ConfirmBtn = styled.div`
 `;
 
 function GroupJoin() {
+  const [inviteCode, setInviteCode] = useState("");
+
+  const onChange = ({ target }) => {
+    const { value } = target;
+    setInviteCode(value);
+  };
+
+  const join = () => {
+    joinGourp(inviteCode).then((res) => {
+      alert(res.data.success);
+    });
+  };
+
   return (
     <React.Fragment>
       <Redeem>초대코드</Redeem>
       <EnterCode
         placeholder="초대코드를 입력해주세요"
         className={"placeholder"}
+        name={"inviteCode"}
+        onChange={onChange}
       />
-      <ConfirmBtn>확인</ConfirmBtn>
+      <ConfirmBtn onClick={join}>확인</ConfirmBtn>
     </React.Fragment>
   );
 }
