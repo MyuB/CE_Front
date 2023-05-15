@@ -35,15 +35,18 @@ export const myPageReq = () => {
 
 export const myPageModification = (name, email) => {
   const tokens = getToken();
+  if (!tokens) alert("no tokens valid");
 
   return axios.put(
-    `${process.env.REACT_APP_BASEURL}/accout`,
+    `${process.env.REACT_APP_BASEURL}/account`,
     {
       name,
       email,
     },
     {
-      Authorization: tokens.accessToken,
+      headers: {
+        Authorization: tokens.accessToken,
+      },
     }
   );
 };

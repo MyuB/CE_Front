@@ -56,8 +56,8 @@ function MyPage() {
   useEffect(() => {
     myPageReq().then((res) => {
       setServerData({
-        username: res.user_name,
-        email: res.email,
+        username: res.data.user_name,
+        email: res.data.email,
       });
     });
   }, []);
@@ -72,7 +72,7 @@ function MyPage() {
 
   const modifyMyData = () => {
     myPageModification(inputs.username, inputs.email).then((res) => {
-      if (res.success) {
+      if (res.data.success) {
         alert("회원정보가 수정되었습니다!");
       } else {
         alert("something wrong");

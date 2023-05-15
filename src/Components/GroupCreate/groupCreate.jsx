@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import "./groupCreate.scss";
 import { useState } from "react";
+import { groupCreate } from "API/group";
 
 const OuterText = styled.div`
   color: black;
@@ -44,6 +45,7 @@ const CheckBox = styled.input`
 
 function GroupCreate() {
   const [inputs, setInputs] = useState({
+    groupName: "",
     startDate: "",
     endDate: "",
   });
@@ -62,9 +64,22 @@ function GroupCreate() {
     if (!dateVerification()) {
       alert("please check your dates");
     }
+    console.log(inputs.groupName);
+    groupCreate(
+      inputs.groupName,
+      inputs.startDate,
+      inputs.endDate,
+      true,
+      false
+    ).then((res) => {
+      console.log(res);
+      alert(`invite code is: ${res.invite_code}`);
+    });
+
     setInputs({
       startDate: "",
       endDate: "",
+      groupName: "",
     });
   };
 
@@ -75,7 +90,13 @@ function GroupCreate() {
     <React.Fragment>
       <div>
         <OuterText>그룹명</OuterText>
-        <InputBox type="text" placeholder="그룹명을 입력해주세요" />
+        <InputBox
+          type="text"
+          placeholder="그룹명을 입력해주세요"
+          onChange={onChange}
+          name="groupName"
+          value={inputs.groupName}
+        />
       </div>
       <div>
         <OuterText>시작기간</OuterText>
