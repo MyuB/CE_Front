@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 const Redeem = styled.div`
@@ -36,14 +37,14 @@ const ConfirmBtn = styled.div`
 
 function GroupJoin() {
   return (
-    <div>
+    <React.Fragment>
       <Redeem>초대코드</Redeem>
       <EnterCode
         placeholder="초대코드를 입력해주세요"
         className={"placeholder"}
       />
       <ConfirmBtn>확인</ConfirmBtn>
-    </div>
+    </React.Fragment>
   );
 }
 
