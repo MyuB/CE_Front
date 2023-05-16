@@ -3,6 +3,7 @@ import React from "react";
 import "./groupCreate.scss";
 import { useState } from "react";
 import { groupCreate } from "API/group";
+import { setGroupInviteCode } from "utils/inviteCode";
 
 const OuterText = styled.div`
   color: black;
@@ -72,7 +73,7 @@ function GroupCreate() {
       true,
       false
     ).then((res) => {
-      console.log(res);
+      setGroupInviteCode(res.invite_code);
       alert(`invite code is: ${res.invite_code}`);
     });
 
