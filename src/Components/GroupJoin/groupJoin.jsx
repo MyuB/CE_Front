@@ -39,6 +39,10 @@ const ConfirmBtn = styled.div`
 function GroupJoin() {
   const [inviteCode, setInviteCode] = useState("");
 
+  const setGroupInviteCode = () => {
+    window.localStorage.setItem("groupInviteCode", inviteCode);
+  };
+
   const onChange = ({ target }) => {
     const { value } = target;
     setInviteCode(value);
@@ -47,6 +51,7 @@ function GroupJoin() {
   const join = () => {
     joinGourp(inviteCode).then((res) => {
       alert(res.data.success);
+      setGroupInviteCode();
     });
   };
 
