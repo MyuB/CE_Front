@@ -47,13 +47,13 @@ export const joinGourp = (inviteCode) => {
   );
 };
 
-export const getRank = (group_index) => {
+export const getRank = (inviteCode) => {
   const tokens = getToken();
   if (!tokens) alert("no tokens valid!");
 
   return axios
-    .get(`${process.env.REACT_APP_BASEURL}/group`, {
-      params: { group_index },
+    .get(`${process.env.REACT_APP_BASEURL}/group/rank`, {
+      params: { invite_code: inviteCode },
       headers: {
         Authorization: tokens.accessToken,
       },
