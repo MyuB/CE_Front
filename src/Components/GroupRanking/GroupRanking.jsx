@@ -1,6 +1,9 @@
 // import { getRank } from "API/group";
 // import { useState } from "react";
+import { getRank } from "API/group";
+import { useEffect } from "react";
 import styled from "styled-components";
+import { getGroupInviteCode } from "utils/inviteCode";
 
 const Message = styled.div`
   margin-left: 3vh;
@@ -32,12 +35,16 @@ function GroupRanking() {
   // const [groupInfo, setGroupInfo] = useState();
   const colors = ["#FFD700", "#C0C0C0", "#A0522D", "#f0f0f0"];
 
-  //api 호출 후
+  useEffect(() => {
+    getRank(getGroupInviteCode()).then((res) => {
+      console.log(res);
+    });
+  }, []);
 
   return (
     <div>
       <div className={"top_header"}>
-        <Message>초대코드: </Message>
+        <Message>초대코드: {getGroupInviteCode()}</Message>
         <Message>그룹기간: </Message>
       </div>
       <div>
