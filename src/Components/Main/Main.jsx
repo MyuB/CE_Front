@@ -82,7 +82,7 @@ function Main() {
   const [infos, setInfos] = useState();
   useEffect(() => {
     getMainPageInfo().then((res) => setInfos(res));
-  }, [infos]);
+  }, []);
 
   const goToTraffic = () => {
     navigate("/traffic");
