@@ -16,6 +16,7 @@ import Certification from "./Components/MyCertification/CertificationPage";
 import Home from "Components/Home/Home";
 import Member from "Components/GroupMember/Member";
 import Food from "Components/Food/Food";
+import FoodSolution from "Components/Food/FoodSolution";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/trafficsol" element={<TrafficSolution />} />
           <Route path="/mycertification" element={<Certification />} />
           <Route path="/food" element={<Food />} />
+          <Route path="/foodSolution" element={<FoodSolution />} />
           <Route path={"*"} element={<NotFound />} />
         </Routes>
       </BrowserRouter>
