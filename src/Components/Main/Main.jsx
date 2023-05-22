@@ -88,14 +88,14 @@ function Main() {
     navigate("/traffic");
   };
   const goToFood = () => {
-    navigate("/");
+    navigate("/food");
   };
   const goToGroup = () => {
     navigate("/group");
   };
 
   const getDate = () => {
-    let now = new Date(); // 현재 날짜 및 시간
+    let now = new Date();
     let todayDate = now.getDate();
     const week = [
       "Sunday",
