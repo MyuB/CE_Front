@@ -15,6 +15,7 @@ import Header from "Components/Header/Header";
 import Certification from "./Components/MyCertification/CertificationPage";
 import Home from "Components/Home/Home";
 import Member from "Components/GroupMember/Member";
+import Food from "Components/Food/Food";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/trafficsol" element={<TrafficSolution />} />
           <Route path="/mycertification" element={<Certification />} />
+          <Route path="/food" element={<Food />} />
           <Route path={"*"} element={<NotFound />} />
         </Routes>
       </BrowserRouter>
