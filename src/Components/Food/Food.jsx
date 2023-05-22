@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import "./Food.scss";
 import cam from "../../assets/camera.png";
@@ -84,6 +84,11 @@ const SolutionButton = styled.div`
 
 function Food() {
   const navigate = useNavigate();
+  const [file, setFile] = useState(null);
+
+  const onFileChange = ({ target }) => {
+    setFile(target.file[0]);
+  };
 
   const goToSolution = () => {
     navigate("/foodSolution");
@@ -95,7 +100,7 @@ function Food() {
         <SmallText>
           {"이미지 처리 AI를 이용해 음식 탄소량을 계산해보세요"}
         </SmallText>
-        <ImageButton type="file" id={"image"} />
+        <ImageButton type="file" id={"image"} onChange={onFileChange} />
         <ImageLabel htmlFor="image" className={"image-label"}>
           <Camera src={cam} alt="camera" />
         </ImageLabel>
