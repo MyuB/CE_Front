@@ -5,10 +5,11 @@ import cam from "../../assets/camera.png";
 
 const MainWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const ImageButton = styled.input`
@@ -24,6 +25,7 @@ const SmallText = styled.div`
   font-size: 1.8vh;
   line-height: 8vh;
   text-align: center;
+  font-weight: bold;
 `;
 
 const ImageLabel = styled.label`
@@ -43,6 +45,27 @@ const Camera = styled.img`
   width: 20vh;
   height: 20vh;
   display: block;
+`;
+
+const TextWrapper = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+
+const NavyText = styled.div`
+  height: 3vh;
+  line-height: 3vh;
+  font-size: 3vh;
+  color: rgba(6, 25, 65, 0.8);
+  font-weight: bold;
+`;
+
+const GreenText = styled.div`
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 4vh;
+  color: #009688;
+  font-weight: bold;
 `;
 
 function Food() {
