@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import "./Food.scss";
 import cam from "../../assets/camera.png";
+import { useNavigate } from "react-router-dom";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -68,14 +69,38 @@ const GreenText = styled.div`
   font-weight: bold;
 `;
 
+const SolutionButton = styled.div`
+  width: 20vh;
+  height: 8vh;
+  text-align: center;
+  line-height: 8vh;
+  font-size: 2vh;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: #92b8b1;
+  color: white;
+  margin-bottom: 5vh;
+`;
+
 function Food() {
+  const navigate = useNavigate();
+  const [file, setFile] = useState(null);
+
+  const onFileChange = ({ target }) => {
+    setFile(target.file[0]);
+  };
+
+  const goToSolution = () => {
+    navigate("/foodSolution");
+  };
+
   return (
     <React.Fragment>
       <MainWrapper>
         <SmallText>
           {"이미지 처리 AI를 이용해 음식 탄소량을 계산해보세요"}
         </SmallText>
-        <ImageButton type="file" id={"image"} />
+        <ImageButton type="file" id={"image"} onChange={onFileChange} />
         <ImageLabel htmlFor="image" className={"image-label"}>
           <Camera src={cam} alt="camera" />
         </ImageLabel>
@@ -83,6 +108,7 @@ function Food() {
           <NavyText>{"탄소소비량"}</NavyText>
           <GreenText>{"0 C/kwh"}</GreenText>
         </TextWrapper>
+        <SolutionButton onClick={goToSolution}>{"솔루션 보기"}</SolutionButton>
       </MainWrapper>
     </React.Fragment>
   );

@@ -7,12 +7,13 @@ const NormalWrapper = styled.div`
   background-color: ${(props) => props.color};
   height: 10vh;
   width: 100%;
-  border-bottom: 0.1lvh solid gray;
+  border-bottom: ${(props) => (props.line ? "0.1lvh solid gray" : "none")};
   text-align: center;
   line-height: 10vh;
   font-size: 3vh;
   font-weight: bold;
 `;
+
 //Traffic에서만 사용할 Wrapper
 const TrafficWrapper = styled.div`
   background-color: ${(props) => props.color};
@@ -59,6 +60,19 @@ function Header() {
     const componentUrl = parseHref();
     if (componentUrl === "traffic")
       return <TrafficWrapper color={WrapperColor.traffic}></TrafficWrapper>;
+    if (componentUrl === "group")
+      return (
+        <NormalWrapper color={WrapperColor.traffic}>
+          <BtnWrapper>
+            <LeftBtn
+              src={leftArrow}
+              alt={"temp"}
+              onClick={() => navigate(-1)}
+            />
+            <EmptyBox />
+          </BtnWrapper>
+        </NormalWrapper>
+      );
     if (componentUrl === "main")
       return <MainWrapper color={WrapperColor.white} />;
     if (componentUrl === "") {
@@ -66,7 +80,7 @@ function Header() {
     }
 
     return (
-      <NormalWrapper color={WrapperColor.white}>
+      <NormalWrapper color={WrapperColor.white} line={"ok"}>
         <BtnWrapper>
           <LeftBtn src={leftArrow} alt={"temp"} onClick={() => navigate(-1)} />
           <div>{componentUrl}</div>

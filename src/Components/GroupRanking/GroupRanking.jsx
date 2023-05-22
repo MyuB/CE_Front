@@ -1,5 +1,4 @@
-// import { getRank } from "API/group";
-// import { useState } from "react";
+import React, { useState } from "react";
 import { getRank } from "API/group";
 import { useEffect } from "react";
 import styled from "styled-components";
@@ -16,7 +15,7 @@ const RankBox = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 1vh;
-  background-color: #f0f0f0;
+  background-color: ${(props) => props.color};
   border-radius: 15px;
   color: black;
   width: 90%;
@@ -31,28 +30,36 @@ const RankNum = styled.span`
 `;
 
 function GroupRanking() {
-  // const [rankInfo, setRankInfo] = useState();
-  // const [groupInfo, setGroupInfo] = useState();
+  const [rankInfo, setRankInfo] = useState();
+  const [groupInfo, setGroupInfo] = useState();
   const colors = ["#FFD700", "#C0C0C0", "#A0522D", "#f0f0f0"];
 
   useEffect(() => {
     getRank(getGroupInviteCode()).then((res) => {
-      console.log(res);
+      setRankInfo(res.data);
     });
   }, []);
 
   return (
-    <div>
+    <React.Fragment>
       <div className={"top_header"}>
         <Message>초대코드: {getGroupInviteCode()}</Message>
         <Message>그룹기간: </Message>
       </div>
       <div>
+        {rankInfo &&
+          rankInfo.map((rank, index) => {
+            return (
+              <RankBox color={index < 3 ? colors[index] : colors[3]}>
+                <RankNum>{index + 1}</RankNum> {rank.name} C/kwh
+              </RankBox>
+            );
+          })}
         <RankBox>
           <RankNum>1</RankNum> 김인하 C/kwh
         </RankBox>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 
