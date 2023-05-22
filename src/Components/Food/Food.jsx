@@ -79,6 +79,10 @@ function Food() {
         <ImageLabel htmlFor="image" className={"image-label"}>
           <Camera src={cam} alt="camera" />
         </ImageLabel>
+        <TextWrapper>
+          <NavyText>{"탄소소비량"}</NavyText>
+          <GreenText>{"0 C/kwh"}</GreenText>
+        </TextWrapper>
       </MainWrapper>
     </React.Fragment>
   );
