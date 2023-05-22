@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getFoodSolution } from "API/food";
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,6 +21,10 @@ const SolutionBox = styled.div`
 
 function FoodSolution() {
   const [solution, setSolution] = useState();
+
+  useEffect(() => {
+    getFoodSolution().then((res) => setSolution(res.data[0]));
+  }, []);
 
   return (
     <Wrapper>
