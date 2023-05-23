@@ -31,7 +31,6 @@ const RankNum = styled.span`
 
 function GroupRanking() {
   const [rankInfo, setRankInfo] = useState();
-  const [groupInfo, setGroupInfo] = useState();
   const colors = ["#FFD700", "#C0C0C0", "#A0522D", "#f0f0f0"];
 
   useEffect(() => {
