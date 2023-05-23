@@ -72,11 +72,11 @@ const AvgLine = styled.span`
 `;
 
 const data = [
-  { name: "5일 전", carbon: 2400, amt: 2400 },
-  { name: "4일 전", carbon: 1398, amt: 2210 },
-  { name: "3일 전", carbon: 9800, amt: 2290 },
-  { name: "2일 전", carbon: 3908, amt: 2000 },
-  { name: "1일 전", carbon: 4800, amt: 2181 },
+  { name: "5일 전", carbon: 2400 },
+  { name: "4일 전", carbon: 1398 },
+  { name: "3일 전", carbon: 9800 },
+  { name: "2일 전", carbon: 3908 },
+  { name: "1일 전", carbon: 4800 },
 ];
 
 function ReportPage() {
@@ -117,7 +117,6 @@ function ReportPage() {
             <Bar dataKey="carbon" fill="#92B8B1" />
           </BarChart>
         </ChartContainer>
-
         <AvgLine />
         <CarbonBox>
           <AvgMent>{"평균 소비량"}</AvgMent>
