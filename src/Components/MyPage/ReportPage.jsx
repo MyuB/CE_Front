@@ -1,5 +1,5 @@
 // 두 번째 페이지
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import {
@@ -11,6 +11,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { averageConsume } from "API/account";
 
 const Wrapper = styled.div`
   display: flex;
@@ -80,6 +81,18 @@ const data = [
 
 function ReportPage() {
   const [solution, setSolution] = useState();
+  const [avg, setAvg] = useState();
+
+  useEffect(() => {
+    averageConsume().then((res) => {
+      data[0].carbon = res.five_day_ago;
+      data[1].carbon = res.four_day_ago;
+      data[2].carbon = res.three_day_ago;
+      data[3].carbon = res.two_day_ago;
+      data[4].carbon = res.one_day_ago;
+      setAvg(res.avg);
+    });
+  }, []);
 
   return (
     <Wrapper>
@@ -108,7 +121,7 @@ function ReportPage() {
         <AvgLine />
         <CarbonBox>
           <AvgMent>{"평균 소비량"}</AvgMent>
-          <AvgCarbonUsage>3.12 C/kwh</AvgCarbonUsage>
+          <AvgCarbonUsage>{avg ? avg : "no Data"}/kwh</AvgCarbonUsage>
         </CarbonBox>
       </SolutionBox>
     </Wrapper>
