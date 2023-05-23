@@ -26,7 +26,7 @@ const SolutionBox = styled.div`
   border-radius: 3vh;
   margin: 5vh auto;
 `;
-//민재
+
 const CarbonBox = styled.div`
   height: 11vh;
   width: 75vw;
@@ -52,9 +52,6 @@ const AvgCarbonUsage = styled.span`
   margin-left: 8vw;
   font-weight: bold;
 `;
-//
-
-//나
 
 const ChartContainer = styled.div`
   margin-top: 5vh;
@@ -81,7 +78,6 @@ const data = [
   { name: "1일 전", carbon: 4800, amt: 2181 },
 ];
 
-//
 function ReportPage() {
   const [solution, setSolution] = useState();
 
