@@ -3,6 +3,7 @@ import React from "react";
 import { months } from "utils/months";
 import styled from "styled-components";
 import "./CertificationPage.scss";
+import { postCertification } from "API/cert";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -143,13 +144,12 @@ function Certification() {
         img: imageSrc,
       });
     };
-  };
 
-  const onChange = ({ target }) => {
-    const { name, value } = target;
-    setInputs({
-      ...inputs,
-      [name]: value,
+    const formData = new FormData();
+    formData.append("img", file);
+
+    postCertification(formData).then((res) => {
+      console.log(res);
     });
   };
 
