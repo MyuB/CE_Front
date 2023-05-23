@@ -50,14 +50,15 @@ function GroupRanking() {
         {rankInfo &&
           rankInfo.map((rank, index) => {
             return (
-              <RankBox color={index < 3 ? colors[index] : colors[3]}>
-                <RankNum>{index + 1}</RankNum> {rank.name} C/kwh
+              <RankBox
+                color={index < 3 ? colors[index] : colors[3]}
+                key={index + 1}
+              >
+                <RankNum>{index + 1}</RankNum> {rank.user_name}{" "}
+                {rank.total_carbon} C/kwh
               </RankBox>
             );
           })}
-        <RankBox>
-          <RankNum>1</RankNum> 김인하 C/kwh
-        </RankBox>
       </div>
     </React.Fragment>
   );
