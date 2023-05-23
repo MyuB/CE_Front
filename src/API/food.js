@@ -13,3 +13,22 @@ export const getFoodSolution = () => {
     })
     .then((res) => res.data);
 };
+
+export const setFoodCarbonData = (carbon) => {
+  const tokens = getToken();
+  if (!tokens) alert("no tokens!");
+
+  return axios
+    .post(
+      `${process.env.REACT_APP_BASEURL}/food`,
+      {
+        carbon,
+      },
+      {
+        headers: {
+          Authorization: tokens.accessToken,
+        },
+      }
+    )
+    .then((res) => res.data);
+};
