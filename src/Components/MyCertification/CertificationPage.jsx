@@ -113,31 +113,7 @@ function Certification() {
     DateInput: "",
   });
   const [boxes, setBoxes] = useState([]);
-  const [count, setCount] = useState(1);
   const [uploadText, setUploadText] = useState("select your photo");
-  const API_ENDPOINT =
-    "https://vscode-jyyiu.run.goorm.site/proxy/8000/user_auth";
-
-  const submitData = async () => {
-    try {
-      const response = await fetch(API_ENDPOINT, {
-        method: "POST",
-        headers: {
-          //"Content-Type": "application/json",
-          access_token: "access token",
-          refresh_token: "refresh token",
-        },
-        body: JSON.stringify({
-          user_name: inputs.user_name,
-          img: inputs.img,
-        }),
-      });
-      const result = await response.json();
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const selectImage = () => {
     return new Promise((resolve) => {
@@ -241,5 +217,5 @@ function Certification() {
     </MainWrapper>
   );
 }
-//
+
 export default Certification;
