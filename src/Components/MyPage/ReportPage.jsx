@@ -1,5 +1,5 @@
 // 두 번째 페이지
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import {
@@ -11,6 +11,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { averageConsume } from "API/account";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ const SolutionBox = styled.div`
   border-radius: 3vh;
   margin: 5vh auto;
 `;
-//민재
+
 const CarbonBox = styled.div`
   height: 11vh;
   width: 75vw;
@@ -52,9 +53,6 @@ const AvgCarbonUsage = styled.span`
   margin-left: 8vw;
   font-weight: bold;
 `;
-//
-
-//나
 
 const ChartContainer = styled.div`
   margin-top: 5vh;
@@ -74,16 +72,27 @@ const AvgLine = styled.span`
 `;
 
 const data = [
-  { name: "5일 전", carbon: 2400, amt: 2400 },
-  { name: "4일 전", carbon: 1398, amt: 2210 },
-  { name: "3일 전", carbon: 9800, amt: 2290 },
-  { name: "2일 전", carbon: 3908, amt: 2000 },
-  { name: "1일 전", carbon: 4800, amt: 2181 },
+  { name: "5일 전", carbon: 2400 },
+  { name: "4일 전", carbon: 1398 },
+  { name: "3일 전", carbon: 9800 },
+  { name: "2일 전", carbon: 3908 },
+  { name: "1일 전", carbon: 4800 },
 ];
 
-//
 function ReportPage() {
   const [solution, setSolution] = useState();
+  const [avg, setAvg] = useState();
+
+  useEffect(() => {
+    averageConsume().then((res) => {
+      data[0].carbon = res.five_day_ago;
+      data[1].carbon = res.four_day_ago;
+      data[2].carbon = res.three_day_ago;
+      data[3].carbon = res.two_day_ago;
+      data[4].carbon = res.one_day_ago;
+      setAvg(res.avg);
+    });
+  }, []);
 
   return (
     <Wrapper>
@@ -108,11 +117,10 @@ function ReportPage() {
             <Bar dataKey="carbon" fill="#92B8B1" />
           </BarChart>
         </ChartContainer>
-
         <AvgLine />
         <CarbonBox>
           <AvgMent>{"평균 소비량"}</AvgMent>
-          <AvgCarbonUsage>3.12 C/kwh</AvgCarbonUsage>
+          <AvgCarbonUsage>{avg ? avg : "no Data"}/kwh</AvgCarbonUsage>
         </CarbonBox>
       </SolutionBox>
     </Wrapper>

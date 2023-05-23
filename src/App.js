@@ -17,6 +17,7 @@ import Home from "Components/Home/Home";
 import Member from "Components/GroupMember/Member";
 import Food from "Components/Food/Food";
 import FoodSolution from "Components/Food/FoodSolution";
+import ReportPage from "Components/MyPage/ReportPage";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/mycertification" element={<Certification />} />
           <Route path="/food" element={<Food />} />
           <Route path="/foodSolution" element={<FoodSolution />} />
+          <Route path="/statistics" element={<ReportPage />} />
           <Route path={"*"} element={<NotFound />} />
         </Routes>
       </BrowserRouter>

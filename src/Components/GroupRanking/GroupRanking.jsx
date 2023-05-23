@@ -31,7 +31,6 @@ const RankNum = styled.span`
 
 function GroupRanking() {
   const [rankInfo, setRankInfo] = useState();
-  const [groupInfo, setGroupInfo] = useState();
   const colors = ["#FFD700", "#C0C0C0", "#A0522D", "#f0f0f0"];
 
   useEffect(() => {
@@ -50,14 +49,15 @@ function GroupRanking() {
         {rankInfo &&
           rankInfo.map((rank, index) => {
             return (
-              <RankBox color={index < 3 ? colors[index] : colors[3]}>
-                <RankNum>{index + 1}</RankNum> {rank.name} C/kwh
+              <RankBox
+                color={index < 3 ? colors[index] : colors[3]}
+                key={index + 1}
+              >
+                <RankNum>{index + 1}</RankNum> {rank.user_name}{" "}
+                {rank.total_carbon} C/kwh
               </RankBox>
             );
           })}
-        <RankBox>
-          <RankNum>1</RankNum> 김인하 C/kwh
-        </RankBox>
       </div>
     </React.Fragment>
   );

@@ -4,6 +4,7 @@ import React from "react";
 import { months } from "utils/months";
 import styled from "styled-components";
 import "./CertificationPage.scss";
+import { postCertification } from "API/cert";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -114,32 +115,8 @@ function Certification() {
     DateInput: "",
   });
   const [boxes, setBoxes] = useState([]);
-  const [count, setCount] = useState(1);
   const [uploadText, setUploadText] = useState("select your photo");
-  const API_ENDPOINT =
-    "https://vscode-jyyiu.run.goorm.site/proxy/8000/user_auth";
 
-  const submitData = async () => {
-    try {
-      const response = await axios.post(
-        API_ENDPOINT,
-        {
-          user_name: inputs.user_name,
-          img: inputs.img,
-        },
-        {
-          headers: {
-            access_token: "access token",
-            refresh_token: "refresh token",
-          },
-        }
-      );
-      const result = response.data;
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const selectImage = () => {
     return new Promise((resolve) => {
@@ -169,13 +146,12 @@ function Certification() {
         img: imageSrc,
       });
     };
-  };
 
-  const onChange = ({ target }) => {
-    const { name, value } = target;
-    setInputs({
-      ...inputs,
-      [name]: value,
+    const formData = new FormData();
+    formData.append("img", file);
+
+    postCertification(formData).then((res) => {
+      console.log(res);
     });
   };
 
@@ -243,5 +219,5 @@ function Certification() {
     </MainWrapper>
   );
 }
-//
+
 export default Certification;
