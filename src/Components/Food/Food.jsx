@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "./Food.scss";
 import cam from "../../assets/camera.png";
 import { useNavigate } from "react-router-dom";
+import { setFoodCarbonData } from "API/food";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -91,7 +92,10 @@ function Food() {
   };
 
   const goToSolution = () => {
-    navigate("/foodSolution");
+    setFoodCarbonData(123).then((res) => {
+      console.log("HI");
+    });
+    //navigate("/foodSolution");
   };
 
   return (
