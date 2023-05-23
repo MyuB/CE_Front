@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ImgUploadReq } from "API/img";
 import React from "react";
 import { months } from "utils/months";
 import styled from "styled-components";
@@ -120,19 +121,20 @@ function Certification() {
 
   const submitData = async () => {
     try {
-      const response = await fetch(API_ENDPOINT, {
-        method: "POST",
-        headers: {
-          //"Content-Type": "application/json",
-          access_token: "access token",
-          refresh_token: "refresh token",
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        API_ENDPOINT,
+        {
           user_name: inputs.user_name,
           img: inputs.img,
-        }),
-      });
-      const result = await response.json();
+        },
+        {
+          headers: {
+            access_token: "access token",
+            refresh_token: "refresh token",
+          },
+        }
+      );
+      const result = response.data;
       console.log(result);
     } catch (error) {
       console.log(error);
