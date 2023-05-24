@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ImgUploadReq } from "API/img";
 import React from "react";
 import { months } from "utils/months";
 import styled from "styled-components";
@@ -116,7 +115,6 @@ function Certification() {
   });
   const [boxes, setBoxes] = useState([]);
   const [uploadText, setUploadText] = useState("select your photo");
-  const [selectedImage, setSelectedImage] = useState(null);
 
   const selectImage = () => {
     return new Promise((resolve) => {
@@ -157,7 +155,6 @@ function Certification() {
 
   const onUpload = async ({ target }) => {
     const file = target.files[0];
-    setSelectedImage(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
