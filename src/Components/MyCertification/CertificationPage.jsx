@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { months } from "utils/months";
 import styled from "styled-components";
 import "./CertificationPage.scss";
-import { postCertification } from "API/cert";
+import { getCertification, postCertification } from "API/cert";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -115,6 +115,18 @@ function Certification() {
   });
   const [boxes, setBoxes] = useState([]);
   const [uploadText, setUploadText] = useState("select your photo");
+  const [serverImage, setServerImage] = useState([]);
+
+  useEffect(() => {
+    getCertification()
+      .then((res) => {
+        console.log(res);
+        setServerImage(res.data);
+      })
+      .then(() => {
+        serverImage.map((box) => {});
+      });
+  });
 
   const selectImage = () => {
     return new Promise((resolve) => {
