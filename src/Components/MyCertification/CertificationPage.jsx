@@ -116,7 +116,7 @@ function Certification() {
   });
   const [boxes, setBoxes] = useState([]);
   const [uploadText, setUploadText] = useState("select your photo");
-
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const selectImage = () => {
     return new Promise((resolve) => {
@@ -155,23 +155,21 @@ function Certification() {
     });
   };
 
-  const onUpload = async (e) => {
-    const file = e.target.files[0];
+  const onUpload = async ({ target }) => {
+    const file = target.files[0];
+    setSelectedImage(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        const imageSrc = reader.result || null;
-        setUploadText("");
-        setBoxes([...boxes.slice(0, boxes.length - 1), imageSrc]);
-        setInputs({
-          ...inputs,
-          img: imageSrc,
-        });
-        resolve();
-      };
-    });
+    reader.onload = () => {
+      const imageSrc = reader.result || null;
+      setUploadText("");
+      setBoxes([...boxes.slice(0, boxes.length - 1), imageSrc]);
+      setInputs({
+        ...inputs,
+        img: imageSrc,
+      });
+    };
   };
 
   const getDate = () => {
