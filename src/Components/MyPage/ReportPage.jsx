@@ -1,4 +1,3 @@
-// 두 번째 페이지
 import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
@@ -80,7 +79,6 @@ const data = [
 ];
 
 function ReportPage() {
-  const [solution, setSolution] = useState();
   const [avg, setAvg] = useState();
 
   useEffect(() => {

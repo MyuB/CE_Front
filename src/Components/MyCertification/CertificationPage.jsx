@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { ImgUploadReq } from "API/img";
+import { useEffect, useState } from "react";
 import React from "react";
 import { months } from "utils/months";
 import styled from "styled-components";
 import "./CertificationPage.scss";
-import { postCertification } from "API/cert";
+import { getCertification, postCertification } from "API/cert";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -116,7 +115,18 @@ function Certification() {
   });
   const [boxes, setBoxes] = useState([]);
   const [uploadText, setUploadText] = useState("select your photo");
+  const [serverImage, setServerImage] = useState([]);
 
+  useEffect(() => {
+    getCertification()
+      .then((res) => {
+        console.log(res);
+        setServerImage(res.data);
+      })
+      .then(() => {
+        serverImage.map((box) => {});
+      });
+  });
 
   const selectImage = () => {
     return new Promise((resolve) => {
@@ -155,23 +165,20 @@ function Certification() {
     });
   };
 
-  const onUpload = async (e) => {
-    const file = e.target.files[0];
+  const onUpload = async ({ target }) => {
+    const file = target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        const imageSrc = reader.result || null;
-        setUploadText("");
-        setBoxes([...boxes.slice(0, boxes.length - 1), imageSrc]);
-        setInputs({
-          ...inputs,
-          img: imageSrc,
-        });
-        resolve();
-      };
-    });
+    reader.onload = () => {
+      const imageSrc = reader.result || null;
+      setUploadText("");
+      setBoxes([...boxes.slice(0, boxes.length - 1), imageSrc]);
+      setInputs({
+        ...inputs,
+        img: imageSrc,
+      });
+    };
   };
 
   const getDate = () => {
