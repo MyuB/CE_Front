@@ -14,3 +14,16 @@ export const postCertification = (formData) => {
     })
     .then((res) => res.data);
 };
+
+export const getCertification = () => {
+  const tokens = getToken();
+  if (!tokens) alert("no tokens!");
+
+  return axios
+    .get(`${process.env.REACT_APP_BASEURL}/user_auth`, {
+      headers: {
+        Authorization: tokens.accessToken,
+      },
+    })
+    .then((res) => res.data);
+};
