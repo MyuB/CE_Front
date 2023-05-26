@@ -1,6 +1,6 @@
 import { setTrafficCarbon } from "API/traffic";
 
-function TrafficCarbon({ busTime, subwayTime }) {
+function TrafficCarbon({ busTime, subwayTime, traffic = true }) {
   const busCarbon = (time) => {
     const t = parseInt(time);
     return t * 0.006;
@@ -17,7 +17,11 @@ function TrafficCarbon({ busTime, subwayTime }) {
     return transportationCarbon;
   };
 
-  return <div>{totalCarbonFootprint()}</div>;
+  return (
+    <div>
+      {traffic ? totalCarbonFootprint() : totalCarbonFootprint() * 2.43}
+    </div>
+  );
 }
 
 export default TrafficCarbon;
