@@ -29,13 +29,6 @@ const ConfirmBtn = styled.div`
   margin-bottom: 5vh;
 `;
 
-const CarbonCalced = styled.div`
-  text-align: center;
-  font-size: 2.5vh;
-  font-weight: bold;
-  color: #009688;
-`;
-
 const CarbonUsed = styled.div`
   text-align: center;
   font-size: 3.5vh;
