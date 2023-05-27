@@ -29,16 +29,10 @@ const ConfirmBtn = styled.div`
   margin-bottom: 5vh;
 `;
 
-const CarbonCalced = styled.div`
-  text-align: center;
-  font-size: 2.5vh;
-  font-weight: bold;
-  color: #009688;
-`;
-
 const CarbonUsed = styled.div`
   text-align: center;
-  font-size: 2vh;
+  font-size: 3.5vh;
+  font-weight: bold;
   color: rgba(0, 150, 136, 0.7);
 `;
 
@@ -145,14 +139,14 @@ function Traffic() {
       <LoadScript
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
       ></LoadScript>
-      <CarbonCalced>
+      {/* <CarbonCalced>
         {time ? (
           <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
         ) : (
           0
         )}{" "}
         C / kwh
-      </CarbonCalced>
+      </CarbonCalced>*/}
       <CarbonUsed>{"carbon used"}</CarbonUsed>
       <img src={Line} alt="" className={"line-image"} />
       <Address>주소</Address>
@@ -189,18 +183,47 @@ function Traffic() {
           </CalcedBoxMessageWrapper>
         </CalcedResultBox>
         <CalcedResultBox>
+          <CalcedBoxImageWrapper id={"123"}>
+            {/* 여기 안에 픽토그램 들어갈 것 */}
+          </CalcedBoxImageWrapper>
+          <CalcedBoxMessageWrapper>
+            <CalcedBoxMessage>대중교통 이용 시</CalcedBoxMessage>
+            <CalcedBoxMessage style={{ color: "#009688" }}>
+              {time ? (
+                <TrafficCarbon
+                  busTime={time.busTime}
+                  subwayTime={time.subwayTime}
+                  traffic={true}
+                />
+              ) : (
+                0
+              )}{" "}
+              C/kwh
+            </CalcedBoxMessage>
+          </CalcedBoxMessageWrapper>
+        </CalcedResultBox>
+        <CalcedResultBox>
           <CalcedBoxImageWrapper>
             {/* 여기 안에 픽토그램 들어갈 것 */}
           </CalcedBoxImageWrapper>
           <CalcedBoxMessageWrapper>
             <CalcedBoxMessage>자가용 이용 시</CalcedBoxMessage>
             <CalcedBoxMessage style={{ color: "#009688" }}>
-              {/* 계산 결과 */ "C/kwh"}
+              {time ? (
+                <TrafficCarbon
+                  busTime={time.busTime}
+                  subwayTime={time.subwayTime}
+                  traffic={false}
+                />
+              ) : (
+                0
+              )}{" "}
+              {"C/kwh"}
             </CalcedBoxMessage>
           </CalcedBoxMessageWrapper>
         </CalcedResultBox>
       </CalcedBoxesWrapper>
-      <div className="button-wrapper">
+      <div className="click-wrapper">
         <ConfirmBtn onClick={tryAPIconnection}>계산</ConfirmBtn>
         <ConfirmBtn onClick={moveToSolution}>솔루션</ConfirmBtn>
       </div>
