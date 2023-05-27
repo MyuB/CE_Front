@@ -115,18 +115,22 @@ function Certification() {
   });
   const [boxes, setBoxes] = useState([]);
   const [uploadText, setUploadText] = useState("select your photo");
-  const [serverImage, setServerImage] = useState([]);
 
   useEffect(() => {
-    getCertification()
-      .then((res) => {
-        console.log(res);
-        setServerImage(res.data);
-      })
-      .then(() => {
-        serverImage.map((box) => {});
-      });
-  });
+    getCertification().then((res) => {
+      const temp = [];
+      for (let i = 0; i < res.data.length; i++) {
+        temp.push({
+          url:
+            process.env.REACT_APP_BASEURL +
+            "/" +
+            res.data[i].img.replace("img/", ""),
+          name: res.data[i].user_name,
+        });
+      }
+      setBoxes([...temp]);
+    });
+  }, []);
 
   const selectImage = () => {
     return new Promise((resolve) => {
@@ -150,7 +154,7 @@ function Certification() {
 
     reader.onload = () => {
       const imageSrc = reader.result || null;
-      setBoxes([...boxes, imageSrc]);
+      setBoxes([...boxes, { url: imageSrc, name: "name" }]);
       setInputs({
         ...inputs,
         img: imageSrc,
@@ -165,7 +169,7 @@ function Certification() {
     });
   };
 
-  const onUpload = async ({ target }) => {
+  const onUpload = ({ target }) => {
     const file = target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -199,12 +203,12 @@ function Certification() {
         <TableCell>날짜</TableCell>
       </TableWrapper>
 
-      {boxes.map((imageSrc, index) => (
+      {boxes.map((object, index) => (
         <GreyWrapper key={index}>
-          <NameTableCell>Name{/* 여기에 이름 들어감 */}</NameTableCell>
+          <NameTableCell>{object.name}</NameTableCell>
           <ImgContainer>
-            {imageSrc ? (
-              <Image src={imageSrc} alt="uploaded" />
+            {object ? (
+              <Image src={object.url} alt="uploaded" />
             ) : (
               <label htmlFor={`img-upload-${index}`}>
                 {uploadText || "사진 선택"}
