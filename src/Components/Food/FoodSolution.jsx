@@ -16,20 +16,26 @@ const SolutionBox = styled.div`
   border-radius: 3vh;
   text-align: center;
   margin: 5vh auto;
-  line-height: 70vh;
+  padding-top: 9vh;
+  font-size: 3vh;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 `;
 
 function FoodSolution() {
-  const [solution, setSolution] = useState();
+  const [solution, setSolution] = useState(null);
 
   useEffect(() => {
-    getFoodSolution().then((res) => setSolution(res.data[0]));
+    getFoodSolution().then((res) => {
+      setSolution(res.data.solution);
+    });
   }, []);
 
   return (
     <Wrapper>
-      <SolutionBox>
-        {solution ? solution.solution : "solution not ready"}
+      <SolutionBox className={"word"}>
+        {solution ? solution : "solution not ready"}
       </SolutionBox>
     </Wrapper>
   );
