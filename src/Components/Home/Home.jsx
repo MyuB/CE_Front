@@ -12,10 +12,14 @@ const MainWrapper = styled.div`
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-  height: 37vh;
+  justify-content: center;
+  height: 46vh;
   width: 100%;
   text-align: center;
   line-height: 35vh;
+  font-size: 6.5vh;
+  color: #92b8b1;
+  font-weight: bold;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -51,7 +55,7 @@ function Home() {
 
   return (
     <MainWrapper>
-      <LogoWrapper></LogoWrapper>
+      <LogoWrapper>{"Carbon Eye"}</LogoWrapper>
       <ButtonsWrapper>
         <MainButton onClick={goToLogin}>{"로그인"}</MainButton>
         <MainButton onClick={goToRegister}>{"회원가입"}</MainButton>
