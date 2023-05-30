@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import "./Food.scss";
 import cam from "../../assets/camera.png";
 import { useNavigate } from "react-router-dom";
-import { setFoodCarbonData } from "API/food";
+import { getFoodCarbonData, setFoodCarbonData } from "API/food";
 import { getPrediction } from "API/ml";
 
 const MainWrapper = styled.div`
@@ -86,19 +86,26 @@ const SolutionButton = styled.div`
 
 function Food() {
   const navigate = useNavigate();
+  const [foodCarbon, setFoodCarbon] = useState(0);
 
-  const onFileChange = ({ target }) => {
+  const onFileChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+
     const formData = new FormData();
-    formData.append("file", target.files[0]);
+    formData.append("img", file);
 
     getPrediction(formData).then((res) => {
-      console.log(res);
+      getFoodCarbonData(res).then((res) => {
+        console.log(res);
+        setFoodCarbon(res.data);
+      });
     });
   };
 
   const goToSolution = () => {
-    setFoodCarbonData(123).then((res) => {
-      console.log("HI");
+    setFoodCarbonData(foodCarbon).then((res) => {
+      console.log(res);
     });
     navigate("/foodSolution");
   };
@@ -109,13 +116,21 @@ function Food() {
         <SmallText>
           {"이미지 처리 AI를 이용해 음식 탄소량을 계산해보세요"}
         </SmallText>
-        <ImageButton type="file" id={"image"} onChange={onFileChange} />
-        <ImageLabel htmlFor="image" className={"image-label"}>
+        <label htmlFor="image" className="image-label">
+          <input
+            type="file"
+            id="image"
+            onChange={onFileChange}
+            style={{ display: "none" }}
+          />
           <Camera src={cam} alt="camera" />
-        </ImageLabel>
+        </label>
         <TextWrapper>
           <NavyText>{"탄소소비량"}</NavyText>
-          <GreenText>{"0 C/kwh"}</GreenText>
+          <GreenText>
+            {foodCarbon}
+            {" g/kwh"}
+          </GreenText>
         </TextWrapper>
         <SolutionButton onClick={goToSolution}>{"솔루션 보기"}</SolutionButton>
       </MainWrapper>
