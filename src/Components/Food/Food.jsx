@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import "./Food.scss";
 import cam from "../../assets/camera.png";
 import { useNavigate } from "react-router-dom";
 import { setFoodCarbonData } from "API/food";
+import { getPrediction } from "API/ml";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -85,17 +86,21 @@ const SolutionButton = styled.div`
 
 function Food() {
   const navigate = useNavigate();
-  const [file, setFile] = useState(null);
 
   const onFileChange = ({ target }) => {
-    setFile(target.file[0]);
+    const formData = new FormData();
+    formData.append("file", target.files[0]);
+
+    getPrediction(formData).then((res) => {
+      console.log(res);
+    });
   };
 
   const goToSolution = () => {
     setFoodCarbonData(123).then((res) => {
       console.log("HI");
     });
-    //navigate("/foodSolution");
+    navigate("/foodSolution");
   };
 
   return (
