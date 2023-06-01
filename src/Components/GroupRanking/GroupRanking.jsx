@@ -61,7 +61,7 @@ function GroupRanking() {
     <React.Fragment>
       <MyHeader>
         <Message>초대코드: {getGroupInviteCode()}</Message>
-        <Message>그룹기간: {d}</Message>
+        <Message>그룹기간: {d ? d : "null"}</Message>
       </MyHeader>
       <div>
         {rankInfo &&
