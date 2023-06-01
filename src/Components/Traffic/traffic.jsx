@@ -130,10 +130,6 @@ function Traffic() {
     });
   };
 
-  const tryAPIconnection = () => {
-    setTrafficCarbon(5).then((res) => console.log(res));
-  };
-
   return (
     <div className={"traffic-wrapper"}>
       <LoadScript
@@ -224,7 +220,7 @@ function Traffic() {
         </CalcedResultBox>
       </CalcedBoxesWrapper>
       <div className="click-wrapper">
-        <ConfirmBtn onClick={tryAPIconnection}>계산</ConfirmBtn>
+        <ConfirmBtn onClick={calculateRoutes}>계산</ConfirmBtn>
         <ConfirmBtn onClick={moveToSolution}>솔루션</ConfirmBtn>
       </div>
     </div>

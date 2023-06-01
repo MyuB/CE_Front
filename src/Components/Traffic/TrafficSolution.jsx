@@ -1,5 +1,5 @@
 import { getTrafficSolution } from "API/traffic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -16,18 +16,26 @@ const SolutionBox = styled.div`
   border-radius: 3vh;
   text-align: center;
   margin: 5vh auto;
-  line-height: 70vh;
+  padding-top: 9vh;
+  font-size: 3vh;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 `;
 
 function TrafficSolution() {
-  const [solution, setSolution] = useState();
-  getTrafficSolution().then((res) => setSolution(res.data[0]));
+  const [solution, setSolution] = useState(null);
+
+  useEffect(() => {
+    getTrafficSolution().then((res) => {
+      setSolution(res.data.solution);
+      console.log(res.data);
+    });
+  }, []);
 
   return (
     <Wrapper>
-      <SolutionBox>
-        {solution ? solution.solution : "solution not ready"}
-      </SolutionBox>
+      <SolutionBox>{solution ? solution : "solution not ready"}</SolutionBox>
     </Wrapper>
   );
 }
