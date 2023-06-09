@@ -135,14 +135,6 @@ function Traffic() {
       <LoadScript
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
       ></LoadScript>
-      {/* <CarbonCalced>
-        {time ? (
-          <TrafficCarbon busTime={time.busTime} subwayTime={time.subwayTime} />
-        ) : (
-          0
-        )}{" "}
-        C / kwh
-      </CarbonCalced>*/}
       <CarbonUsed>{"carbon used"}</CarbonUsed>
       <img src={Line} alt="" className={"line-image"} />
       <Address>주소</Address>
