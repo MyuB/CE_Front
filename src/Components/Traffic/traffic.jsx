@@ -6,7 +6,6 @@ import calculateTime from "./calculateTime";
 import TrafficCarbon from "./trafficCarbon";
 import { useNavigate } from "react-router-dom";
 import Line from "assets/Line.png";
-import { setTrafficCarbon } from "API/traffic";
 
 const InputForm = styled.input`
   width: 80vw;
