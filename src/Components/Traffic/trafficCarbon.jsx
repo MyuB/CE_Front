@@ -1,3 +1,5 @@
+import { setTrafficCarbon } from "API/traffic";
+
 function TrafficCarbon({ busTime, subwayTime, traffic = true }) {
   const busCarbon = (time) => {
     const t = parseInt(time);
@@ -11,6 +13,7 @@ function TrafficCarbon({ busTime, subwayTime, traffic = true }) {
 
   const totalCarbonFootprint = () => {
     const transportationCarbon = busCarbon(busTime) + subwayCarbon(subwayTime);
+    setTrafficCarbon(transportationCarbon);
     return transportationCarbon;
   };
 
