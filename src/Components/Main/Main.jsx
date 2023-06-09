@@ -77,6 +77,19 @@ const CarbonUsage = styled.span`
   font-weight: bold;
 `;
 
+const ToMyPage = styled.div`
+  color: #000;
+  font-size: 2vh;
+  text-align: center;
+  margin-left: 4vh;
+  height: 3vh;
+  width: 10vh;
+  line-height: 3vh;
+  border: 0.1vh solid #009688;
+  margin-top: 1vh;
+  border-radius: 1vh;
+`;
+
 function Main() {
   const navigate = useNavigate();
   const [infos, setInfos] = useState();
@@ -92,6 +105,9 @@ function Main() {
   };
   const goToGroup = () => {
     navigate("/group");
+  };
+  const goToMyPage = () => {
+    navigate("/statistics");
   };
 
   const getDate = () => {
@@ -116,6 +132,7 @@ function Main() {
     <MainWrapper>
       <Comment>Hi, {infos ? infos.name : "123"}</Comment>
       <CurrentDate>{getDate()}</CurrentDate>
+      <ToMyPage onClick={goToMyPage}>{"My Page"}</ToMyPage>
       <GroupBoxWrapper>
         <TopBox>
           <CarbonMent>{"탄소 소비량"}</CarbonMent>
