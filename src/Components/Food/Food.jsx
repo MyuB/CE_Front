@@ -15,33 +15,12 @@ const MainWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const ImageButton = styled.input`
-  border: none;
-  border-radius: 100%;
-  height: 35vh;
-  width: 35vh;
-  background-color: red;
-`;
-
 const SmallText = styled.div`
   height: 8vh;
   font-size: 1.8vh;
   line-height: 8vh;
   text-align: center;
   font-weight: bold;
-`;
-
-const ImageLabel = styled.label`
-  border: none;
-  border-radius: 100%;
-  height: 35vh;
-  width: 35vh;
-  background-color: #92b8b1;
-  border-radius: 100%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const Camera = styled.img`
