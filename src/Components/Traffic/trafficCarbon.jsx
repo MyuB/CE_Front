@@ -1,5 +1,3 @@
-import { setTrafficCarbon } from "API/traffic";
-
 function TrafficCarbon({ busTime, subwayTime, traffic = true }) {
   const busCarbon = (time) => {
     const t = parseInt(time);
