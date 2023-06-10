@@ -14,13 +14,13 @@ export const getFoodSolution = () => {
     .then((res) => res.data);
 };
 
-export const getFoodCarbonData = () => {
+export const getFoodCarbonData = (food) => {
   const tokens = getToken();
   if (!tokens) alert("no tokens!");
 
   return axios
     .get(`${process.env.REACT_APP_BASEURL}/food`, {
-      params: { menu: "chocolate_cake" },
+      params: { menu: food },
       headers: {
         Authorization: tokens.accessToken,
       },
