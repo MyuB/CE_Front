@@ -66,17 +66,17 @@ const SolutionButton = styled.div`
 function Food() {
   const navigate = useNavigate();
   const [foodCarbon, setFoodCarbon] = useState(0);
+  const [prediction, setPrediction] = useState("");
 
   const onFileChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
 
     const formData = new FormData();
     formData.append("img", file);
 
     getPrediction(formData).then((res) => {
+      setPrediction(res);
       getFoodCarbonData(res).then((res) => {
-        console.log(res);
         setFoodCarbon(res.data);
       });
     });
@@ -110,6 +110,8 @@ function Food() {
             {foodCarbon}
             {" g/kwh"}
           </GreenText>
+          <NavyText style={{ marginTop: "1vh" }}>{"내가 먹은 음식"}</NavyText>
+          <GreenText>{prediction ? prediction : ""}</GreenText>
         </TextWrapper>
         <SolutionButton onClick={goToSolution}>{"솔루션 보기"}</SolutionButton>
       </MainWrapper>
