@@ -15,33 +15,12 @@ const MainWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const ImageButton = styled.input`
-  border: none;
-  border-radius: 100%;
-  height: 35vh;
-  width: 35vh;
-  background-color: red;
-`;
-
 const SmallText = styled.div`
   height: 8vh;
   font-size: 1.8vh;
   line-height: 8vh;
   text-align: center;
   font-weight: bold;
-`;
-
-const ImageLabel = styled.label`
-  border: none;
-  border-radius: 100%;
-  height: 35vh;
-  width: 35vh;
-  background-color: #92b8b1;
-  border-radius: 100%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const Camera = styled.img`
@@ -87,17 +66,17 @@ const SolutionButton = styled.div`
 function Food() {
   const navigate = useNavigate();
   const [foodCarbon, setFoodCarbon] = useState(0);
+  const [prediction, setPrediction] = useState("");
 
   const onFileChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
 
     const formData = new FormData();
     formData.append("img", file);
 
     getPrediction(formData).then((res) => {
+      setPrediction(res);
       getFoodCarbonData(res).then((res) => {
-        console.log(res);
         setFoodCarbon(res.data);
       });
     });
@@ -131,6 +110,8 @@ function Food() {
             {foodCarbon}
             {" g/kwh"}
           </GreenText>
+          <NavyText style={{ marginTop: "1vh" }}>{"내가 먹은 음식"}</NavyText>
+          <GreenText>{prediction ? prediction : ""}</GreenText>
         </TextWrapper>
         <SolutionButton onClick={goToSolution}>{"솔루션 보기"}</SolutionButton>
       </MainWrapper>
